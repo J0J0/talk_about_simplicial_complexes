@@ -1,0 +1,239 @@
+\documentclass[11pt,a4paper,ngerman,DIV=11,bibliography=totoc]{scrreprt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+\usepackage[babel]{csquotes}
+\usepackage[shortlabels]{enumitem}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{ifmtarg}
+\usepackage{xstring}
+\usepackage{remreset}
+
+
+\usepackage[pdftex,bookmarks,colorlinks=false,pdfborder={0 0 0},%
+            pdftitle={Seminar Topologie vs. Kombinatorik - %
+                      Vortrag 2: Simpliziale Komplexe},%
+            pdfauthor={Johannes Prem}]{hyperref}
+%
+\usepackage{cleveref}
+\let\cref=\Cref
+
+\usepackage{helpers} % my own helpers.sty
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% macro definitions and other things
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% don't reset footnote numbers
+\makeatletter
+\@removefromreset{footnote}{chapter}
+\makeatother
+
+
+% make parenthesized versions of \ref and cleveref's \cref
+\newcommand*{\pref}[1]{(\ref{#1})}
+\newcommand*{\pcref}[1]{(\cref{#1})}
+
+% make a even more clever \mycref that produces "Lemma 42a)" etc.
+% (to see it in action check out the code in chap{1,2,3}.tex)  % TODO
+\newcommand{\mycref}[1]{%
+    \begingroup%
+    \StrCount{#1}{:}[\mycrefCount]%
+    \StrBefore[\mycrefCount]{#1}{:}[\myrefMain]%
+    \expandafter\cref\expandafter{\myrefMain}\,\ref{#1}%
+    \endgroup%
+}
+
+% make \varepsilon and \varphi default
+\varifygreekletters{\epsilon\phi}
+
+% change the qedsymbol to my favoured blacksquare
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+% style for /all/ theorem like environments
+\newtheoremstyle{mythms}
+ {15pt}% space above
+ {12pt}% space below 
+ {}% body font
+ {}% indent amount
+ {\bfseries}% theorem head font
+ {.}% punctuation after theorem head
+ {0.6cm plus 0.25cm minus 0.1cm}% space after theorem head (\newline possible)
+ {}% theorem head spec 
+ 
+% set style and define thm like environments
+\theoremstyle{mythms}
+\newtheorem{globalnum}{DUMMY DUMMY DUMMY}[chapter]
+\newtheorem{thDef}[globalnum]{Definition}
+\newtheorem{thNotation}[globalnum]{Notation}
+\newtheorem{thSatz}[globalnum]{Satz}
+%\newtheorem{thPropos}[globalnum]{Proposition}
+\newtheorem{thLemma}[globalnum]{Lemma}
+\newtheorem{thKorollar}[globalnum]{Korollar}
+
+\newtheorem{thBemerkung}[globalnum]{Bemerkung}
+%\newtheorem{thWarnung}[globalnum]{Warnung}
+%\newtheorem{thBeisp}[globalnum]{Beispiel}
+\newtheorem{thBeispiele}[globalnum]{Beispiele}
+\newenvironment{BspList}[1][]{%
+\nopagebreak\begin{thBeispiele}#1%
+\hfill\begin{enumerate}[a),parsep=0pt,itemsep=0.8ex,leftmargin=2em]%
+}{%
+\end{enumerate}\end{thBeispiele}
+}
+%
+
+% also define a 'proofsketch' version of 'proof'
+\newenvironment{proofsketch}[1][]{%
+\begin{proof}[Beweisskizze#1]
+}{%
+\end{proof}
+}
+
+% inject pdfbookmarks at thm like environments
+\makeatletter
+\let\origthmhead=\thmhead
+\renewcommand{\thmhead}[3]{%
+\origthmhead{#1}{#2}{#3}%
+\pdfbookmark[2]{#1\@ifnotempty{#1}{ }#2\thmnote{ (#3)}}{#1#2}%
+}
+\makeatother
+
+% new math operators
+\DeclareMathOperator*{\bigdotcup}{\overset{\mkern0mu\scalebox{0.6}{$\bullet$}}{\bigcup}}
+
+% new math 'operators'  % TODO update
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\Potmenge}{\mathcal{P}}
+\DeclareMathOperator{\supp}{supp}
+
+% make quantors that use \limits per default
+\DeclareMathOperator*{\Exists}{\exists}
+\DeclareMathOperator*{\forAll}{\forall}
+
+% define an 'abs', 'norm' and 'Spann' command
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\Spann}{\langle}{\rangle}
+
+\let\polyeder=\norm
+
+%---
+% the following creates an operator norm as a tripple stroke \vert
+% (source: mathabx fonts)
+\DeclareFontFamily{U}{matha}{\hyphenchar\font45}
+\DeclareFontShape{U}{matha}{m}{n}{
+      <5> <6> <7> <8> <9> <10> gen * matha
+      <10.95> matha10 <12> <14.4> <17.28> <20.74> <24.88> matha12
+      }{}
+\DeclareSymbolFont{matha}{U}{matha}{m}{n}
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{
+      <5> <6> <7> <8> <9> <10>
+      <10.95> <12> <14.4> <17.28> <20.74> <24.88>
+      mathx10
+      }{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+
+\DeclareMathDelimiter{\vvvert}{0}{matha}{"7E}{mathx}{"17}
+\DeclarePairedDelimiter{\opnorm}{\vvvert}{\vvvert}
+%---
+
+% define missing arrows
+\newcommand{\longto}{\longrightarrow}
+\newcommand{\longhookrightarrow}{\lhook\joinrel\relbar\joinrel\rightarrow}
+
+% provide mathbb symbols \N \Z \Q \R and \C
+\defmathbbsymbols{N Z Q C}
+\defmathbbsymbolsubs{R}
+
+% define some set specific macros
+\newcommand{\setclosure}[1]{\overline{#1}}
+\newcommand{\setinterior}[1]{#1^\circ}
+\newcommand{\setboundary}[1]{\partial #1}
+
+% just some shortcuts
+\newcommand{\defeq}{\coloneqq}
+\newcommand{\eqdef}{\eqqcolon}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\isum}[1][0]{\sum_{i=#1}}
+\newcommand{\mr}{\mathrm}
+%\newcommand{\mt}{^\mathsf{t}}
+%\newcommand{\Nfolge}[1]{\left(#1_n\right)_{n\in\N}}
+\newcommand{\pot}[1]{\Potmenge(#1)}
+\newcommand{\qiffq}{\quad\iff\quad}
+\newcommand{\qimpliesq}{\quad\implies\quad}
+\newcommand{\qoderq}{\qtextq{oder}}
+\newcommand{\qqtextqq}[1]{\qquad\text{#1}\qquad}
+\newcommand{\qqundqq}{\qqtextqq{und}}
+\newcommand{\qtextq}[1]{\quad\text{#1}\quad}
+\newcommand{\qundq}{\qtextq{und}}
+\newcommand{\setOneto}[1]{\{1,\ldots,#1\}}
+\newcommand{\setZeroto}[1]{\{0,\ldots,#1\}}
+\newcommand{\thalf}{\tfrac{1}{2}}
+
+%
+\newcommand{\Achtung}{\emph{Achtung:} }
+\newcommand{\skeleton}[2]{#1^{\leq#2}}
+
+% overwrite \Re and \Im with less fancier definitions
+\DeclareMathOperator{\Realteil}{Re}
+\DeclareMathOperator{\Imaginaerteil}{Im}
+\let\Re=\Realteil
+\let\Im=\Imaginaerteil
+
+
+% make a \Mid macro as flexible replacement for \mid in set definitions
+\newcommand{\Mid}[1][\,]{%
+#1%
+\ifnum\currentgrouptype=16%
+\middle\vert\else\vert\fi%
+#1%
+}
+
+% \dots and a version for custom size control
+\newcommand{\cMid}[2][\,]{%
+#1#2\vert#1%
+}
+
+% listing with -- is nicer than with bullets 
+\setlist[itemize,1]{label=--}
+
+% start at chapter 0
+\setcounter{chapter}{-1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\input{titlepage}
+\input{chap0}
+\input{chap1}
+
+\nocite{bookc:matousek03}
+
+\appendix
+\bibliographystyle{plaindin}
+\bibliography{bibsources}
+
+\end{document}
+
+
+
+
+
