@@ -1,5 +1,5 @@
 \chapter{Abstrake simpliziale Komplexe}
-\section{Definiton und Beispiele}
+\section{Definiton und geometrische Realisierung}
 Um nicht an die geometrische Definition von simplizialen Komplexen
 im $\R^d$ gebunden zu sein, abstrahieren wir nun von diesem geometrischen Konzept,
 um simpliziale Komplexe rein kombinatorisch und unabhägig von euklidschen Räumen
@@ -18,7 +18,39 @@ beschreiben zu können.
     Die \emph{Dimension von $K$} ist das Maximum der Dimensionen seiner Simplizes (oder
     $\infty$, falls dieses nicht existiert):
     \[ \dim(K) \defeq \max_{\sigma\in K}\,\dim(\sigma)  \;\in\N\cup\{\infty\} \]
+    Wenn $\abs{E}$ endlich ist, so sprechen wir von einem \emph{endlichen
+    simplizialen Komplex}.
 \end{thDef}
 
-Üblicherweise notieren wir in Zukunft anstatt des Paars $(E,K)$ nur noch $K$ und
-nehmen an, dass $E=\bigcup K$ gilt.
+In Zukunft notieren wir anstatt des Paars $(E,K)$ oft nur noch $K$ und
+nehmen an, dass $E=\bigcup K$ gilt. Außerdem können wir aus jedem geometrischen
+simplizialen Komplex~$\Delta$ einen abstrakten gewinnen, indem wir wie folgt
+vorgehen: Sei $E \defeq E(\Delta)$ die Eckenmenge von $\Delta$ und $K$ wie folgt
+gegeben:
+\[ K \defeq \bigl\{ E_\sigma 
+    \Mid E_\sigma \text{ ist Eckenmenge eines Simplex $\sigma\in\Delta$} \bigr\}
+\]
+Dann ist $(E,K)$ klarerweise ein abstrakter simplizialer Komplex, welchen wir
+eine \emph{geometrische Realisierung von $\Delta$} nennen. Das Polyeder
+$\polyeder\Delta$ bezeichnen wir dann auch als ein \emph{Polyeder von $K$}.
+
+% TODO: Beispiel mit Skizze
+
+\begin{thBeispiel}[Graphen als abstrakte simpliziale Komplexe]
+    Jeder (einfache, ungerichtete) Graph $(\tilde E,\tilde K)$ mit
+    Eckenmenge~$\tilde E$ und Kantenmenge~$\tilde K$ definiert einen
+    eindimensionalen simplizialen Komplex~$(E,K)$: Setzte $E\defeq\tilde E$ und
+    $K\defeq \{ A \Mid A\subset B\in\tilde K \}$.
+
+    % TODO: Beispielskizze
+\end{thBeispiel}
+
+Man sieht relativ einfach ein, dass jeder endliche simpliziale Komplex $(E,K)$ 
+eine geometrische Realisierung im $\R^{\abs{E}-1}$ hat, siehe beispielsweise
+Matou\v sek\cite[Ch.\,1,\;1.5]{bookc:matousek03}, oder in einer allgemeineren
+Variante Munkres\cite[Ch.\,1,\;\S3,\;3.1]{bookc:munkres84}. Stattdessen
+verweisen wir auf \cref{asc:geomrealization}, welches eine schärfere Aussage
+liefert.
+
+
+
