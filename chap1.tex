@@ -6,7 +6,7 @@ aber für kombinatorische Anwendungen noch zu allgemein sind.\footnote{%
     In der Tat kann man zeigen, dass es CW-Komplexe gibt, welche sich nicht
     durch die nachfolgenden Konstruktionen beschreiben lassen. Dass dies sogar
     schon mit einem zweidimensionalen CW-Komplex möglich ist, zeigt
-    beispielsweise Bognár.\cite{artcle:bognar77}%
+    beispielsweise Bognár\cite{artcle:bognar77}.%
 }
 Wir interessieren uns daher dafür, wie wir topologische Räume beschreiben
 können, die aus kombinatorisch einfacher zu beschreibenden Bausteinen aufgebaut
@@ -189,7 +189,7 @@ folgende Lemma:
 \end{proofsketch}
 
 Das letzte Argument findet man ausführlicher auch bei 
-Matou\v sek\cite[Lemma~1.3.6]{bookc:matousek03}.
+Matou\v sek\cite[Ch.\,1,\;1.3.6]{bookc:matousek03}.
 
 
 \section{Triangulierung}
@@ -206,4 +206,105 @@ Triangulierung bezeichnet, sondern auch ein zugehöriger, fest gewählter
 Homöomorphismus. Wir halten uns hier jedoch an die Bezeichnungen wie bei
 Matou\v sek\cite{bookc:matousek03}.
 
+\medskip
+Die folgenden Aussagen liefern uns Triangulierungen für Sphären jeder
+Dimension:
+
+\begin{thLemma}[Kompaktheit konvexer Hülle endlich vieler Punkte]
+    \label{gsc:convexhullcompact}
+    %
+    Ist $d\in\N$ und $A\subset\R^d$ eine endliche Teilmenge, so ist die konvexe
+    Hülle $\conv(A)\subset\R^d$ eine kompakte Menge.
+\end{thLemma}
+
+\begin{proof}
+    Seien $n,d\in\N$ und $v_0,\ldots,v_n\in\R^d$ endlich viele Punkte. Nach
+    \cref{gsc:convexhullviaconvexcombinations} gilt dann:
+    \[ \conv(\{v_0,\ldots,v_n\}) = 
+        \Bigl\{\, \isum^n \lambda_i\,v_i \Mid[\;] \lambda\in(\R[\geq0])^{n+1},
+        \; \isum^n \lambda_i = 1    \,\Bigr\}
+    \]
+    Die Menge 
+    $T\defeq\{ \lambda\in [0,1]^{n+1} \Mid \isum^n \lambda_i = 1 \}$
+    ist abgeschlossen in $[0,1]^{n+1}$ als Urbild der in $\R$ abgeschlossenen
+    Menge $\{1\}$ unter der stetigen Funktion $[0,1]^{n+1}\to\R,\;
+    \lambda\mapsto\isum^n \lambda_i$. Weil $[0,1]^{n+1}$ kompakt ist, ist somit
+    auch $T$ kompakt. Damit ist die obige konvexe Hülle kompakt als Bild der
+    kompakten Menge~$T$ unter der stetigen Abbildung
+    \[ T \to \R^d, \quad \lambda\mapsto \isum^n \lambda_i\,v_i . \]
+\end{proof}
+
+\begin{thKorollar}[Simplizes sind kompakt]
+    \label{gsc:simplicescompact}
+    %
+    Ist $\sigma$ ein Simplex, so ist $\sigma$ mit der Teilraumtopologie ein
+    kompakter topologischer Raum.
+\end{thKorollar}
+
+\begin{thSatz}[Homöomorphie zwischen Bällen und konvexen Mengen]
+    \label{gsc:convexsethomeodisk}
+    %
+    Sei $d\in\N$ und $A\subset\R^d$ eine konvexe und kompakte Teilmenge mit
+    nicht-leerem Inneren $\setinterior A$. Dann gelten folgende Homöomorphien:
+    \[ A\cong\setclosure{D^d} \qqtextqq{mit} 
+        \setboundary{A} \cong S^{d-1} \subset \setclosure{D^d} . \]
+\end{thSatz}
+
+Einen Beweis dieses Satzes findet man beispielsweise bei
+Bredon\cite[Ch.\,I,\;16.]{bookc:bredon93} oder bei
+Munkres\cite[Ch.\,1,\;\S1,\;1.1]{bookc:munkres84}.
+
+\begin{thBeispiel}
+    Zu $d\in\N$ erhalten wir also eine Triangulierung der Sphäre $S^{d-1}$ wie
+    folgt: Sei $\sigma$ ein beliebiges $d$-Simplex. Wir bilden dann den
+    zugehörigen simplizialen Komplex und entfernen die einzige $d$-dimensionale
+    Seite (also $\sigma$ selbst) und erhalten so einen simplizialen Komplex
+    $\Delta(\sigma)\setminus\{\sigma\}$, dessen Polyeder nach
+    \cref{gsc:simplicescompact} und \cref{gsc:convexsethomeodisk} zur
+    Einheitssphäre~$S^{d-1}$ homöomorph ist.
+\end{thBeispiel}
+
+% TODO: Skizze
+
+Weitere Triangulierungen von Sphären erhalten wir (auch mithilfe der obigen
+Resultat) aus sogenannten \emph{Kreuzpolytopen}:
+
+\begin{thDef}[Kreuzpolytop]
+    Zu $d\in\N$ bezeichnet
+    \[ \conv(\{ \pm e_1, \ldots, \pm e_d \}) \;\subset\R^d \]
+    das \emph{$d$-dimensionale Kreuzpolytop}.
+\end{thDef}
+
+% TODO: Skizzen für d=0..3
+
+Man zeigt leicht, dass alle echten Seiten (analog zur Definition bei Simplizes)
+tatsächlich Simplizes sind und wir somit analog zum letzten Beispiel eine
+Triangulierung der Sphäre erhalten. Aufgrund der offensichtlichen
+Symmetrieeigenschaften der Kreuzpolytope erhalten wir somit nützliche symmetrische
+Triangulierungen. Wir betrachten noch ein Beispiel:
+
+\begin{thBeispiel}[Triangulierung des Torus]
+    Wir erinnern uns daran, dass wir einen Torus erhalten, wenn wir
+    gegenüberliegende Seiten eines Quadrats (in gleicher Richtung) miteinander
+    identifizieren.
+    % TODO: Skizze
+    Diese Beobachtung können wir nun benutzen, um eine Triangulierung des Torus
+    zu konstruieren. Dabei müssen wir aber vorsichtig sein, denn zum Beispiel
+    stellt 
+    \[ \text{Skizze} \] % TODO
+    eine gültige Triangulierung des Quadrats dar, wenn wir aber die Seiten wie
+    zuvor miteinander identifizieren, so bilden die dargestellten Dreiecke
+    keinen simplizialen Komplex mehr! (Warum?) Wir benötigen also eine feinere
+    Triangulierung des Ausgangsquadrats, zum Beispiel folgende:
+    \[ \text{Skizze} \] % TODO
+    Identifizieren wir nun die äußeren Seiten, so sehen wir, dass wir eine
+    Triangulierung des Torus gefunden haben.\footnote{%
+        Es gibt Triangulierungen des Torus mit weniger $2$-Simplizes. Allerdings
+        kann man zeigen, dass man mindestens $14$~Dreiecke benötigt, siehe
+        z.\,B. Pelletier\cite{www:blog:rip:triangulation}.%
+    }
+    Im Allgemeinen müssen wir also genau aufpassen, ob eine gegebene
+    Triangulierung nach Bildung eines Quotienten immer noch die Bedingungen
+    eines simplizialen Komplexes erfüllt. 
+\end{thBeispiel}
 

@@ -1,0 +1,24 @@
+\chapter{Abstrake simpliziale Komplexe}
+\section{Definiton und Beispiele}
+Um nicht an die geometrische Definition von simplizialen Komplexen
+im $\R^d$ gebunden zu sein, abstrahieren wir nun von diesem geometrischen Konzept,
+um simpliziale Komplexe rein kombinatorisch und unabhägig von euklidschen Räumen
+beschreiben zu können.
+
+\begin{thDef}%
+    [Abstrakter simplizialer Komplex, abstraktes Simplex, Dimension]\hfill\\
+    Ist $E$ eine Menge und $K\subset\pot{E}$, so dass alle Elemente von $K$
+    endliche Mächtigkeit haben, so ist $(E,K)$ ein \emph{abstrakter simplizialer
+    Komplex}, falls zusätzlich gilt:
+    \[ \forall\,\sigma\in K 
+        \;\forall\, \sigma'\subset\sigma \colon\; \sigma'\in K
+    \]
+    Ein Element $\sigma\in K$ nennen wir \emph{(abstraktes) Simplex} und die
+    \emph{Dimension von $\sigma$} ist gegeben durch $\dim(\sigma) \defeq \abs{\sigma}$.
+    Die \emph{Dimension von $K$} ist das Maximum der Dimensionen seiner Simplizes (oder
+    $\infty$, falls dieses nicht existiert):
+    \[ \dim(K) \defeq \max_{\sigma\in K}\,\dim(\sigma)  \;\in\N\cup\{\infty\} \]
+\end{thDef}
+
+Üblicherweise notieren wir in Zukunft anstatt des Paars $(E,K)$ nur noch $K$ und
+nehmen an, dass $E=\bigcup K$ gilt.
