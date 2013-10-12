@@ -53,4 +53,40 @@ verweisen wir auf \cref{asc:geomrealization}, welches eine schärfere Aussage
 liefert.
 
 
+\section{Dimension geometrischer Realisierungen}
+Wir wollen nun folgenden Satz beweisen, welcher uns eine obere Schranke für die
+nötige Dimension $d\in\N$ gibt, für welche es zu einem abstrakten simplizalen
+Komplex eine geometrische Realisierung im $\R^d$ gibt.
 
+\begin{thSatz}%
+    [Satz über die maximal nötige Dimension einer geometrischer Realisierung]
+    \label{asc:geomrealization}
+    %
+    Sei $K$ ein abstrakter simplizaler Komplex der Dimension $\dim(K)=d\in\N$.
+    Dann besitzt $K$ eine geometrische Realisierung im $\R^{2d+1}$.
+\end{thSatz}
+
+Zum Beweis dieses Satzes benötigen wir noch einige Hilfsmittel. 
+
+\begin{thLemma}
+    Sei $d\in\N,\; (E,K)$ ein abstrakter simplizialer Komplex und
+    $\colon E\to\R^d$ eine injektive Abbildung mit folgender Eigenschaft:
+    \[ \forall\,F,G\in K\colon \; f(F\cup G) \text{ ist eine Menge affin
+        unabhängiger Vektoren}
+    \]
+    Dann ist 
+    \[ \bigl\{ \conv\blg(f(F)\bigr) \Mid F\in K \bigr\} \]
+    eine geometrische Realisierung von $K$ im $\R^d$.
+\end{thLemma}
+
+\begin{proof}
+    Seien $d,(E,K),f$ wie in der Behauptung und seien $F,G\in K$. 
+    Da $f(F\cup G)$ nach Voraussetzung affin unabhängig ist, definiert 
+    $\sigma \defeq \conv\bigl(f(F\cup G)\bigr)$ ein Simplex im $\R^d$. 
+    Außerdem gilt offenbar $f(F), f(G)\subset f(F\cup G)$, weshalb
+    $\sigma_F \defeq \conv\bigl(f(F)\bigr)$ und 
+    $\sigma_G \defeq \conv\bigl(f(G)\bigr)$ Seiten von $\sigma$
+    sind. Da die Seiten eines Simplex nach \cref{gsc:complexofsimplex} einen
+    simplizialen Komplex bilden, ist auch $\sigma_F\cap\sigma_G$ eine Seite von
+    $\sigma$, etwa $\conv\bigl(f(T)\bigr)$ für $T\in K$.
+\end{proof}<++>
