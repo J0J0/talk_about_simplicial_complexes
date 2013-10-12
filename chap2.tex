@@ -49,7 +49,7 @@ Man sieht relativ einfach ein, dass jeder endliche simpliziale Komplex $(E,K)$
 eine geometrische Realisierung im $\R^{\abs{E}-1}$ hat, siehe beispielsweise
 Matou\v sek\cite[Ch.\,1,\;1.5]{bookc:matousek03}, oder in einer allgemeineren
 Variante Munkres\cite[Ch.\,1,\;\S3,\;3.1]{bookc:munkres84}. Stattdessen
-verweisen wir auf \cref{asc:geomrealization}, welches eine schärfere Aussage
+verweisen wir hier auf \cref{asc:geomrealization}, welcher eine schärfere Aussage
 liefert.
 
 
@@ -61,32 +61,143 @@ Komplex eine geometrische Realisierung im $\R^d$ gibt.
 \begin{thSatz}%
     [Satz über die maximal nötige Dimension einer geometrischer Realisierung]
     \label{asc:geomrealization}
+    \hfill\\
     %
-    Sei $K$ ein abstrakter simplizaler Komplex der Dimension $\dim(K)=d\in\N$.
+    Sei $K$ ein eindlicher abstrakter simplizaler Komplex der Dimension 
+    $\dim(K)=d\in\N$.
     Dann besitzt $K$ eine geometrische Realisierung im $\R^{2d+1}$.
 \end{thSatz}
 
 Zum Beweis dieses Satzes benötigen wir noch einige Hilfsmittel. 
 
-\begin{thLemma}
+\begin{thLemma}[Hinreichende Bedingung für geometrische Realisierung]
+    \label{asc:suffprelimgeomrealization}
+    %
     Sei $d\in\N,\; (E,K)$ ein abstrakter simplizialer Komplex und
-    $\colon E\to\R^d$ eine injektive Abbildung mit folgender Eigenschaft:
+    $f\colon E\to\R^d$ eine injektive Abbildung mit folgender Eigenschaft:
     \[ \forall\,F,G\in K\colon \; f(F\cup G) \text{ ist eine Menge affin
         unabhängiger Vektoren}
     \]
     Dann ist 
-    \[ \bigl\{ \conv\blg(f(F)\bigr) \Mid F\in K \bigr\} \]
+    \[ \bigl\{ \conv\bigl(f(F)\bigr) \cMid[\;]\big F\in K \bigr\} \]
     eine geometrische Realisierung von $K$ im $\R^d$.
 \end{thLemma}
 
 \begin{proof}
-    Seien $d,(E,K),f$ wie in der Behauptung und seien $F,G\in K$. 
+    Seien $d,(E{,}K),f$ wie in der Behauptung und seien $F,G\in K$. Es ist nur
+    zu zeigen, dass die zweite Bedingung aus \cref{gsc:def:gsc} erfüllt ist 
+    (-- der Rest ist klar).
     Da $f(F\cup G)$ nach Voraussetzung affin unabhängig ist, definiert 
     $\sigma \defeq \conv\bigl(f(F\cup G)\bigr)$ ein Simplex im $\R^d$. 
     Außerdem gilt offenbar $f(F), f(G)\subset f(F\cup G)$, weshalb
-    $\sigma_F \defeq \conv\bigl(f(F)\bigr)$ und 
-    $\sigma_G \defeq \conv\bigl(f(G)\bigr)$ Seiten von $\sigma$
+    $\conv\bigl(f(F)\bigr)$ und 
+    $\conv\bigl(f(G)\bigr)$ Seiten von $\sigma$
     sind. Da die Seiten eines Simplex nach \cref{gsc:complexofsimplex} einen
-    simplizialen Komplex bilden, ist auch $\sigma_F\cap\sigma_G$ eine Seite von
-    $\sigma$, etwa $\conv\bigl(f(T)\bigr)$ für $T\in K$.
-\end{proof}<++>
+    simplizialen Komplex bilden, ist auch der Schnitt dieser beiden Seiten 
+    eine Seite von $\sigma$, etwa $\conv\bigl(f(T)\bigr)$ für 
+    $T\subset F\cup G$. Dann gilt also:
+    \[ \conv\bigl(f(F)\bigr) \cap \conv\bigl(f(G)\bigr) 
+        = \conv\bigl(f(T)\bigr)
+    \]
+    Da $f(F\cup G)$ affin unabhängig ist, sieht man schnell ein, dass das Bilden
+    der konvexen Hülle über Teilmengen davon eine injektive Operation ist.
+    Zusammen mit der gegebenen Injektivität von~$f$ ergibt sich
+    $T = F \cap G$, und da letztere Menge sicherlich auch in~$K$ enthalten ist, 
+    sind wir fertig.
+    \\
+\end{proof}
+
+Um nun Abbildungen zu finden, auf die wir \cref{asc:suffprelimgeomrealization}
+anwenden können, bedienen wir uns der sogenannten \emph{Momentenkurve} und ihrer
+nützlichen Eigenschaften:
+
+\begin{thDef}[Momentenkurve]
+    Zu $d\in\N$ ist die \emph{Momentenkurve im $\R^d$} gegeben durch:
+    \[  \R \to \R^d, \quad x\mapsto (x,x^2,\ldots,x^d) \]
+\end{thDef}
+
+\begin{thLemma}[Eigenschaften der Momentenkurve]
+    \label{asc:momentumcurveprop}
+    %
+    Sei $d\in\N$ und $\gamma$ die Momentenkurve in $\R^d$. Dann hat $\gamma$
+    folgende Eigenschaften:
+    \begin{enumerate}[a)]
+        \item
+            Jede (affine) Hyperebene im $\R^d$ schneidet $\gamma$ 
+            in maximal~$d$ Punkten.
+        \item\label{asc:momentumcurveprop:pointsaffinlyindependent}
+            Je $d+1$ Punkte aus $\Image(\gamma)$ sind affin unabhängig.
+        \item
+            Schneidet eine (affine) Hyperebene $\gamma$ in $d$ verschiedenen 
+            Punkten, so wechselt $\gamma$ an jeder dieser Stellen von einem
+            durch die Hyperebene gegebenen Halbraum zum anderen.
+    \end{enumerate}
+\end{thLemma}
+
+\begin{proofsketch}
+    Indem man eine die Hyperebene definierende Gleichung und die besondere Form
+    der Momentenkurve betrachtet, sieht man, dass sich die Aussagen über
+    Schnittpunkte auf algebraische Argumente über Nullstellen von Polynomen
+    zurückführen lassen. (Genaueres findet man bei 
+    Matou\v sek\cite[Ch.\,1,\;1.6.4]{bookc:matousek03}.)
+    \\
+\end{proofsketch}
+
+Wir haben nun alles beisammen, um die Hauptaussage dieses Abschnitts beweisen zu
+können:
+\begin{proof}[Beweis von \cref{asc:geomrealization}]
+    Sei also $K$ ein endlicher simplizialer Komplex mit $\dim(K)=d\in\N$.
+    Seien außerdem $m\in\N$ und $x_0,\ldots,x_m$ die (verschiedenen) Punkte
+    aus $\bigcup K$. Bezeichne weiter $\gamma$ die Momentenkurve im $\R^{2d+1}$.
+    Definiere dann eine Abbildung
+    $f\colon \bigcup K\to\R^{2d+1}$ für $i\in\setZeroto m$ durch 
+    \[ f(x_i) \defeq \gamma(i) 
+    . \]
+    Es ist $f$ offenbar injektiv und außerdem gilt für alle $F,G\in K$:
+    \[ \abs{F\cup G} \leq \abs{F}+\abs{G} \leq (d+1)+(d+1) = 2d+2 \]
+    Also sind nach \mycref{asc:momentumcurveprop:pointsaffinlyindependent}
+    die Vektoren in $f(F\cup G)$ affin unabhängig und wir können
+    \cref{asc:suffprelimgeomrealization} anwenden.
+    \\
+\end{proof}
+
+
+\section{Zusammenhang zu partiell geordneten Mengen}
+Zur Erinnerung geben wir kurz die folgende Definition:
+
+\begin{thDef}[Partiell geordnete Menge]
+    Eine \emph{partiell geordnete Menge $(P,\leq)$} besteht aus einer Menge~$P$
+    und einer Relation~$\leq$ auf $P$ mit den folgenden Eigenschaften:
+    \begin{enumerate}[a)]
+        \item
+            Reflexivität:\quad $\forall\, x\in P\colon\; x \leq x$
+        \item
+            Transitivität:\quad $\forall\, x,y,z\in P\colon 
+            (x\leq y \,\wedge\, y\leq z) \implies x \leq z$
+        \item
+            Anti-Symmetrie:\quad $\forall\, x,y\in P\colon
+            (x\leq y \,\wedge\, y\leq x) \implies x = y$
+    \end{enumerate}
+\end{thDef}
+
+Wir können aus jeder endlichen partiell geordneten Menge einen endlichen 
+simplizialen Komplex bilden und umgekehrt.
+Folgende Definitionen legen fest, wie wir dies tun wollen:
+
+\begin{thDef}[Ordnungskomplex]
+    Ist $(P,\leq)$ eine endliche partiell geordnete Menge, so definieren wir den
+    \emph{Ordnungskomplex $\Delta(P)$} wie folgt:
+    \[ \Delta(P) \defeq \bigl\{ \{x_1,\ldots,x_k\} \subset P \cMid[\;]\big 
+        k\in\N,\; x_1\leq \dots \leq x_k \bigr\}
+    \]
+    Die Simplizes von $\Delta(P)$ sind also alle endlichen Ketten aus $P$.
+\end{thDef}
+
+\begin{thDef}[Partielle Ordnung auf simplizialem Komplex]
+    Ist $K$ ein endlicher simplizialer Komplex, so wird
+    $K\setminus\{\emptyset\}$ durch die Inklusionsrealtion~$\subset$ partiell
+    geordnet. Wir bezeichnen diese zu $K$ assozierte partiell geordnete Menge
+    mit $P(K)$.
+\end{thDef}
+
+% TODO: kurze Beispiele für beide Operationen
