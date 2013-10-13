@@ -65,23 +65,24 @@ maximal $d+1$ Vektoren im $\R^d$ affin unabhängig sein können.
 \begin{thBemerkung} \label{gsc:convexhullviaconvexcombinations}
     Mithilfe einfacher Argumente zeigt man außerdem, dass für eine Teilmenge
     $A'\subset\R^d$ die konvexe Hülle $\conv(A')$ gerade aus allen 
-    Konvexkombinationen endlich vieler Elemente aus $A'$ besteht.
+    Konvexkombinationen je endlich vieler Elemente aus $A'$ besteht.
 \end{thBemerkung}
 
 
 \begin{thDef}[(Geometrisches) Simplex, Eckpunkte, Dimension]
     \label{gsc:def:simplex}
     %
-    Sind $n,d\in\N$ und $v_0,\ldots,v_n\in\R^d$ affin unabhängig, so bezeichnet
-    man $\sigma \defeq \conv(\{v_0,\ldots,v_n\})$ als \emph{(geometrisches)
-    Simplex} und nennt die $v_i$ \emph{Eckpunkte (von $\sigma$)}, oder kurz
-    \emph{Ecken (von $\sigma$)}. Die \emph{Dimension von $\sigma$} ist dann
-    durch $\dim(\sigma) \defeq n$ definiert und man nennt ein $n$-dimensionales
-    Simplex auch kurz \emph{$n$-Simplex}.
+    Ist $d\in\N$ und $A\subset\R^d$ eine endliche Menge affin unabhängiger
+    Vektoren im $\R^d$, so bezeichnet man $\sigma \defeq \conv(A)$ als
+    \emph{(geometrisches) Simplex} und nennt die Elemente aus $A$
+    \emph{Eckpunkte (von $\sigma$)}, oder kurz \emph{Ecken (von $\sigma$)}. Die
+    \emph{Dimension von $\sigma$} ist dann durch $\dim(\sigma) \defeq \abs{A}-1$
+    definiert und man nennt ein $n$-dimensionales Simplex auch kurz
+    \emph{$n$-Simplex} (wobei $n\in\N\cup\{-1\}$).
 \end{thDef}
 
 \begin{thDef}[Seite eines Simplex]
-    Sind $n,d\in\N$ und ist $\sigma$ ein $n$-Simplex mit der Eckenmenge
+    Ist $d\in\N$ und $\sigma$ ein Simplex mit der Eckenmenge
     $E \subset\R^d$, so ist die konvexe Hülle $\conv(E')$ einer beliebigen 
     Teilmenge $E'\subset E$ wieder ein Simplex und jedes dieser Simplizes wird
     als \emph{Seite von $\sigma$} bezeichnet.
@@ -123,13 +124,14 @@ maximal $d+1$ Vektoren im $\R^d$ affin unabhängig sein können.
 In der Literatur wird des Öfteren der Fall des leeren Simplex~$\emptyset$
 ausgeschlossen. Nach den obigen Definitionen \ref{gsc:def:simplex} und 
 \ref{gsc:def:gsc} ist dies aber erlaubt und insbesondere enthält jeder
+simpliziale Komplex das leere Simplex.
 
 % TODO: Beispielskizzen
 
 \begin{thDef}[Rand und Inneres eines Simplex]
-    Ist $n\in\N$ und $\sigma$ ein $n$-Simplex, so bezeichnen wir die Vereinigung
-    aller Seiten von $\sigma$ mit Dimension echt kleiner als $n$ als \emph{Rand
-    von $\sigma$} und die Teilmenge von $\sigma$, die sich ergibt, wenn wir aus
+    Ist $\sigma$ ein Simplex, so bezeichnen wir die Vereinigung aller Seiten von
+    $\sigma$ mit Dimension echt kleiner als $\dim(\sigma)$ als \emph{Rand von
+    $\sigma$} und die Teilmenge von $\sigma$, die sich ergibt, wenn wir aus
     $\sigma$ den Rand entfernen, als \emph{(relatives) Inneres von $\sigma$}.
 \end{thDef}
 
