@@ -32,12 +32,10 @@ zunächst die folgenden Begriffe:
     unabhängig, wenn für ein beliebiges $k\in\setZeroto{n}$ die Familie
     %\[ \bigl\{ v_i - v_k \Mid i \in\setZeroto{n}\setminus\{k\} \bigr\} \] 
     \[  (v_i - v_k)_{i \in\setZeroto{n}\setminus\{k\}} \] 
-    % TODO: ^  vielleicht doch besser auf v_0 fixieren!?
     von Vektoren im $\R^d$ linear unabhängig ist.
 \end{thLemma}
 
-% TODO: Beweis
-
+Der Beweis ist eine einfache Übung.
 Aus \cref{gsc:iffaffinlyindependet} folgt insbesondere, dass für festes $d\in\N$
 maximal $d+1$ Vektoren im $\R^d$ affin unabhängig sein können.
 
@@ -88,7 +86,40 @@ maximal $d+1$ Vektoren im $\R^d$ affin unabhängig sein können.
     als \emph{Seite von $\sigma$} bezeichnet.
 \end{thDef}
 
-% TODO: Skizzen der 0 bis 3-dimensionalen Simplizes
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[%
+            scale=1.5,
+            mypoint/.style={shape=circle, inner sep=1.8pt, color=black, fill}
+        ]
+        \begin{scope}
+            \node at (0,0) [mypoint] {};
+        \end{scope}
+        \begin{scope}[shift={(1.5,0)}]
+            \draw (0,0) node [mypoint] {} -- (1,0) node [mypoint] {};
+        \end{scope}
+        \begin{scope}[shift={(4,0)}]
+            \draw [fill=black!30] (0,0) node [mypoint] {} -- 
+                  (1,0) node [mypoint] {} --
+                  (0.5,1) node [mypoint] {} -- cycle ;
+        \end{scope}
+        \begin{scope}[shift={(6.7,0)},z={(-5mm,-4mm)}]
+            \coordinate (A) at (0,0,1);
+            \coordinate (B) at (1,0,0);
+            \coordinate (C) at (0,1,0);
+            \coordinate (D) at (0,0,0);
+
+            \draw [fill=black!30]
+                  (A) node [mypoint] {} --
+                  (B) node [mypoint] {} --
+                  (C) node [mypoint] {} -- cycle
+                  (D) node [mypoint] {};
+            \draw [dashed] (A) -- (D) -- (C) (D) -- (B);
+        \end{scope}
+    \end{tikzpicture}
+    \caption{$0$- bis $3$-dimensionale Simplizes}
+    \label{fig:simplices}
+\end{figure}
 
 \begin{thDef}%
     [Geometrischer simplizialer Komplex, Dimension, Polyeder, Eckenmenge]
@@ -126,7 +157,72 @@ ausgeschlossen. Nach den obigen Definitionen \ref{gsc:def:simplex} und
 \ref{gsc:def:gsc} ist dies aber erlaubt und insbesondere enthält jeder
 simpliziale Komplex das leere Simplex.
 
-% TODO: Beispielskizzen
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[%
+            mypoint/.style={shape=circle, inner sep=1.8pt, color=black, fill}
+        ]
+        \begin{scope}[z={(-5mm,-4mm)}]
+            \coordinate (A) at (0,0,1);
+            \coordinate (B) at (1,0,0);
+            \coordinate (C) at (0,1,0);
+            \coordinate (D) at (0,0,0);
+            
+            \coordinate (E) at (2,0,0);
+            \coordinate (F1) at (3,1,0);
+            \coordinate (F2) at (3,-1,0);
+            \coordinate (G) at (4,0,0);
+            \coordinate (H) at (4.5,0.7,0);
+            
+            \draw [fill=black!30]
+                  (A) node [mypoint] {} --
+                  (B) node [mypoint] {} --
+                  (C) node [mypoint] {} -- cycle
+                  (D) node [mypoint] {};
+            \draw [dashed] (A) -- (D) -- (C) (D) -- (B);
+            
+            \draw (B) -- (E);
+            \draw [fill=black!30] (E) -- (F1) -- (F2) -- cycle;
+            \draw [fill=black!30] (G) -- (F1) -- (F2) -- cycle;
+            \path (E)  node [mypoint] {} 
+                  (F1) node [mypoint] {}
+                  (F2) node [mypoint] {};
+            
+            \draw (G) node [mypoint] {} -- (H) node [mypoint] {};
+        \end{scope}
+        
+        \begin{scope}[shift={(7,1)},scale=0.6]
+            \draw (-1,0) node [mypoint] {} -- (1,0) node [mypoint] {}
+                  (0,-1) node [mypoint] {} -- (0,1) node [mypoint] {};
+        \end{scope}
+        
+        \begin{scope}[shift={(6,0)}]
+            \coordinate (E) at (2,0,0);
+            \coordinate (F1) at (3,1,0);
+            \coordinate (F2) at (3,-1,0);
+            \coordinate (F3) at (3,0,0);
+            \coordinate (G) at (4,0,0);
+            
+            \draw [fill=black!30] (E) -- (F1) -- (F2) -- cycle;
+            \draw [fill=black!30] (G) -- (F1) -- (F3) -- cycle;
+            \path (E)  node [mypoint] {} 
+                  (F1) node [mypoint] {}
+                  (F2) node [mypoint] {}
+                  (G)  node [mypoint] {};
+        \end{scope}
+        
+        \begin{scope}[shift={(10.5,-1)}]
+            \draw [fill=black!30] 
+                (0,0) node [mypoint] {} --
+                (2,0) node [mypoint] {} -- 
+                (1,1) node [mypoint] {};
+            \draw (1,0) node [mypoint] {} -- (1.5,-0.5) node [mypoint] {};
+        \end{scope}
+    \end{tikzpicture}
+    \caption{Simplizialer Komplex (links) und 
+             \emph{keine} simplizialen Komplexe (rechts)}
+    \label{fig:simplicalcomplex}
+\end{figure}
 
 \begin{thDef}[Rand und Inneres eines Simplex]
     Ist $\sigma$ ein Simplex, so bezeichnen wir die Vereinigung aller Seiten von
@@ -291,7 +387,7 @@ Triangulierungen. Wir betrachten noch ein Beispiel:
     Wir erinnern uns daran, dass wir einen Torus erhalten, wenn wir
     gegenüberliegende Seiten eines Quadrats (in gleicher Richtung) miteinander
     identifizieren.
-    % TODO: Skizze
+    % TODO: Skizze!?
     Diese Beobachtung können wir nun benutzen, um eine Triangulierung des Torus
     zu konstruieren. Dabei müssen wir aber vorsichtig sein, denn zum Beispiel
     stellt 
