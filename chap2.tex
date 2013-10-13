@@ -6,7 +6,7 @@ um simpliziale Komplexe rein kombinatorisch und unabhägig von euklidschen Räum
 beschreiben zu können.
 
 \begin{thDef}%
-    [Abstrakter simplizialer Komplex, abstraktes Simplex, Dimension]\hfill\\
+    [Abstrakter simplizialer Komplex, abstraktes Simplex, Dimension, Teilkomplex]%\hfill\\
     Ist $E$ eine Menge und $K\subset\pot{E}$, so dass alle Elemente von $K$
     endliche Mächtigkeit haben, so ist $(E,K)$ ein \emph{abstrakter simplizialer
     Komplex}, falls zusätzlich gilt:
@@ -14,12 +14,15 @@ beschreiben zu können.
         \;\forall\, \sigma'\subset\sigma \colon\; \sigma'\in K
     \]
     Ein Element $\sigma\in K$ nennen wir \emph{(abstraktes) Simplex} und die
-    \emph{Dimension von $\sigma$} ist gegeben durch $\dim(\sigma) \defeq \abs{\sigma}$.
+    \emph{Dimension von $\sigma$} ist gegeben durch $\dim(\sigma) \defeq
+    \abs{\sigma}-1$.
     Die \emph{Dimension von $K$} ist das Maximum der Dimensionen seiner Simplizes (oder
     $\infty$, falls dieses nicht existiert):
     \[ \dim(K) \defeq \max_{\sigma\in K}\,\dim(\sigma)  \;\in\N\cup\{\infty\} \]
     Wenn $\abs{E}$ endlich ist, so sprechen wir von einem \emph{endlichen
-    simplizialen Komplex}.
+    simplizialen Komplex}. Sind $E'\subset E,\; K'\subset K$ und definiert
+    $(E',K')$ selbst einen simplizialen Komplex, so nennen wir $(E',K')$ einen
+    \emph{Teilkomplex von $(E,K)$}.
 \end{thDef}
 
 In Zukunft notieren wir anstatt des Paars $(E,K)$ oft nur noch $K$ und

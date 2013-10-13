@@ -1,0 +1,133 @@
+\chapter{Quotienten von simplizialen Komplexen}
+Wir wollen nun zeigen, dass sich Quotienten von Polyedern nach kontraktiblen
+Teilpolyedern (induziert von einem Teilkomplex) in ihrem Homotopietyp nicht vom
+Ausgangsraum unterscheiden. Da wir aus aus dem letzten Semester schon
+allgemeiner wissen, dass dies gilt, falls die Inklusion des Teilraums eine
+Kofaserung ist, zeigen wir also folgende Aussage, woraus wir direkt das
+anschließende gewünschte Korollar erhalten:
+
+\begin{thLemma}[Inklusion eines Teilkomplexes ist Kofaserung]
+    \label{quot:inclusioncofib}
+    %
+    Sei $K$ ein endlicher simplizialer Komplex und $L\subset K$ ein
+    Teilkomplex.  Dann ist die Inklusion zugehöriger Polyeder (einer
+    geometrischen Realisierung) $\polyeder L \hookrightarrow \polyeder K$ eine
+    Kofaserung.
+\end{thLemma}
+
+\begin{thKorollar}%
+    [Quotienten von simplizialen Komplexen nach kontraktiblen Teilkomplexen]
+    %
+    Sei $K$ ein endlicher simplizialer Komplex und $L\subset K$ ein
+    Teilkomplex, für den $\polyeder L$ kontraktibel ist. Dann sind $K$ und
+    $\polyeder K\mkern2mu/\mkern2mu\polyeder L$ homotopieäquivalente Räume.
+\end{thKorollar}
+
+Bevor wir \cref{quot:inclusioncofib} zeigen können, brauchen wir zuerst noch
+ein Hilfsresultat, das aber auch für sich allein genommen interessant ist:
+
+\begin{thLemma}[Abgeschlossenheit von Teilkomplexen]
+    \label{quot:subcomplexclosed}
+    %
+    Ist $\Delta$ ein (geometrischer) simplizialer Komplex und ist
+    $\Delta'\subset\Delta$ ein Teilkomplex, so ist $\polyeder{\Delta'}$
+    abgeschlossen in $\polyeder\Delta$.
+\end{thLemma}
+
+\begin{proof}
+    Seien $\Delta$ und $\Delta'$ wie in der Behauptung und sei
+    $\sigma\in\Delta$. Dann gilt:
+    \[ \polyeder{\Delta'}\cap\sigma 
+        = \bigcup\, \bigl\{ \sigma'\in\Delta(\sigma) \cMid\big \sigma'\in\Delta'
+        \bigr\}
+    , \]
+    d.\,h. $\polyeder{\Delta'}\cap\sigma$ ist die Vereinigung aller Seiten von
+    $\sigma$, welche in $\Delta'$ enthalten sind. Jedes der obigen $\sigma'$ ist
+    aber abgeschlossen in $\sigma$ (als kompakte Teilmenge eines Hausdorffraums)
+    und damit ist die endliche Vereinigung abgeschlossener Mengen auf der rechten
+    Seite ebenfalls abgeschlossen in $\sigma$. Da $\sigma$ beliebig war, ist
+    $\polyeder{\Delta'}$ also abgeschlossen in $\Delta$ nach Definition der
+    Topologie auf $\polyeder\Delta$.
+    \\
+\end{proof}
+
+%\begin{thLemma}[Stetigkeit einer Abbildung aus einem Polyeder heraus]
+%    Ist $\Delta$ ein (geometrischer) simplizialer Komplex, $X$ ein topologischer
+%    Raum und $f\colon\polyeder\Delta\to X$ eine Abbildung, so gilt:
+%    \[ f\text{ stetig} 
+%        \qiffq \forall\,\sigma\in\Delta\colon\; f\vert_\sigma \text{ stetig}
+%    \]
+%\end{thLemma}
+%
+%Der Beweis ist eine einfache Übung und ergibt sich direkt aus der Topologie auf
+%$\polyeder\Delta$. Wir widmen uns nun dem Beweis von \cref{quot:inclusioncofib}.
+
+\begin{proof}[Beweis von \cref{quot:inclusioncofib}]
+    \belowpdfbookmark{Beweis von Lemma \ref{quot:inclusioncofib}}{proofofinclusioncofib}
+    %
+    Sei $K$ ein endlicher simplizialer Komplex und $L\subset K$ ein
+    Teilkomplex. Um die Notation übersichtlicher zu halten, bezeichnen wir die
+    Polyeder von $K$ bzw. $L$ mit $X$ bzw. $A$. Weiter bezeichne im Folgenden
+    $I\defeq[0,1]$ das Einheitsintervall.
+
+    Da $A$ nach \cref{quot:subcomplexclosed} abgeschlossen in $X$ ist, genügt es
+    zu zeigen, dass $(A\times I)\cup(X\times\{0\})$ ein Retrakt von $X\times I$
+    ist, d.\,h. dass es eine stetige Abbildung
+    \begin{gather*}
+        r\colon X\times I \to (A\times I)\cup(X\times\{0\}) 
+        \qquad\text{mit} 
+        \\ 
+        r \circ \bigl( (A\times I)\cup(X\times\{0\}) \hookrightarrow
+        X\times I \bigr) = \id_{(A\times I)\cup(X\times\{0\})}
+    \end{gather*}
+    gibt. Dazu gehen wir wie folgt vor:
+
+    \pagebreak[2]
+    Zuerst betrachten wir den Fall, dass $X$ ein Simplex und $A$ der Rand
+    des Simplex ist. Sei $n\defeq\dim(X)$. Für $n=-1$ gibt es nichts zu tun und
+    für $n=0$ ist $A=\emptyset$, also können wir die Projektion (auf
+    $X\times\{0\}$) als Retraktion nehmen. Sei also nun $n\geq1$.
+    Dann wissen wir nach \cref{gsc:convexsethomeodisk}, dass es
+    einen Homöomorphismus 
+    $f\colon X\xrightarrow{\smash{\raisebox{-2pt}{$\sim$}}} D^n$ 
+    gibt, welcher $A$ homöomorph auf $S^{n-1}\subset D^n$ abbildet.
+    Wir betrachten dann folgendes Diagramm:
+    \begin{equation*}
+        \begin{xy}
+            \xymatrix@C=1.5cm{
+                X\times I \ar@{-->}[r] \ar[d]^{f\times\id_I}
+                & (A\times I)\cup(X\times\{0\})    
+                \\
+                D^n\times I \ar[r] 
+                & (S^{n-1}\times I)\cup(D^n\times\{0\}) \ar[u]^g
+            }
+        \end{xy}
+    \end{equation*}
+    Die untere horizontale Abbildung sei ein Reaktrakt von $D^n\times I$ auf
+    $(S^{n-1}\times I)\cup(D^n\times\{0\})$, welcher existiert, da
+    $S^{n-1}\hookrightarrow D^n$ eine Kofaserung ist. Für $g$ nehmen wir die
+    verklebte Abbildung 
+    \[ g \defeq \bigl(f\vert_A^{-1} \times\id_I\bigr) \cup_{S^{n-1}\times\{0\}}
+        \bigl( f^{-1}\times\const_0 \bigr)
+    , \]
+    wobei $S^{n-1}\times\{0\}$ abgeschlossen in $D^n\times\{0\}$ und somit $g$
+    stetig ist. Wir erhalten also die gestrichelte Abbildung, die gesuchte
+    Retraktion, indem wir das Diagramm unten herum durchlaufen.
+
+    Nun zum allgemeinen Fall. Ohne Einschränkung gelte 
+    $\emptyset\neq L \subsetneq K$. Ist $\Delta$ die geometrische Realisierung
+    von $K$ zu welchem $X$ das Polyeder ist, dann gilt:
+    \[ X \times I 
+        = \Bigl(\, \bigcup_{\sigma\in\Delta} \sigma \mkern2mu\Bigr) \times I
+        = \bigcup_{\sigma\in\Delta} (\sigma\times I)
+    \]
+    Betrachte dann ein Simplex maximaler Dimension aus $K\setminus L$, bzw. das
+    zugehörige geometrische Simplex~$\sigma$. Sei $r'$ dann eine Retraktion wie
+    aus dem vorherigen Abschnitt, welche wir mit der Identität auf $\bigcup
+    (\Delta\setminus\{\sigma\})$ verkleben können. Da es nur endlich viele
+    solcher Simplizes~$\sigma$ gibt, können wir dies der Reihe nach mit allen
+    derartigen Simplizes durchführen bis es keine Simplizes aus $K\setminus L$
+    mehr gibt, welche noch \enquote{aufgedickt} sind. Dieser Prozess liefert
+    letztlich also eine Retraktion~$r$ wie gewünscht.
+    \\
+\end{proof}

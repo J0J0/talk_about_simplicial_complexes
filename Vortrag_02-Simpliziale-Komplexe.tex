@@ -12,6 +12,7 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{mathtools}
+\usepackage[all]{xy}
 
 \usepackage[babel]{csquotes}
 \usepackage[shortlabels]{enumitem}
@@ -107,7 +108,7 @@
 \let\origthmhead=\thmhead
 \renewcommand{\thmhead}[3]{%
 \origthmhead{#1}{#2}{#3}%
-\pdfbookmark[2]{#1\@ifnotempty{#1}{ }#2\thmnote{ (#3)}}{#1#2}%
+\belowpdfbookmark{#1\@ifnotempty{#1}{ }#2\thmnote{ (#3)}}{#1#2}%
 }
 \makeatother
 
@@ -115,6 +116,7 @@
 \DeclareMathOperator*{\bigdotcup}{\overset{\mkern0mu\scalebox{0.6}{$\bullet$}}{\bigcup}}
 
 % new math 'operators'  % TODO update
+\DeclareMathOperator{\const}{const}
 \DeclareMathOperator{\conv}{conv}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\Image}{im}
@@ -159,8 +161,8 @@
 \newcommand{\longhookrightarrow}{\lhook\joinrel\relbar\joinrel\rightarrow}
 
 % provide mathbb symbols \N \Z \Q \R and \C
-\defmathbbsymbols{N Z Q C}
-\defmathbbsymbolsubs{R}
+\defmathbbsymbols{Z Q C}
+\defmathbbsymbolsubs{N R}
 
 % define some set specific macros
 \newcommand{\setclosure}[1]{\overline{#1}}
@@ -211,6 +213,11 @@
 #1#2\vert#1%
 }
 
+
+% xy tip selection (ComputerModern)
+\SelectTips{cm}{}
+\UseTips
+
 % listing with -- is nicer than with bullets 
 \setlist[itemize,1]{label=--}
 
@@ -227,6 +234,7 @@
 \input{chap0}
 \input{chap1}
 \input{chap2}
+\input{chap3}
 
 \nocite{bookc:matousek03}
 
