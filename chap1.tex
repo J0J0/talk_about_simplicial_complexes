@@ -99,7 +99,7 @@ maximal $d+1$ Vektoren im $\R^d$ affin unabhängig sein können.
             \draw (0,0) node [mypoint] {} -- (1,0) node [mypoint] {};
         \end{scope}
         \begin{scope}[shift={(4,0)}]
-            \draw [fill=black!30] (0,0) node [mypoint] {} -- 
+            \draw [fill=black!20] (0,0) node [mypoint] {} -- 
                   (1,0) node [mypoint] {} --
                   (0.5,1) node [mypoint] {} -- cycle ;
         \end{scope}
@@ -109,7 +109,7 @@ maximal $d+1$ Vektoren im $\R^d$ affin unabhängig sein können.
             \coordinate (C) at (0,1,0);
             \coordinate (D) at (0,0,0);
 
-            \draw [fill=black!30]
+            \draw [fill=black!20]
                   (A) node [mypoint] {} --
                   (B) node [mypoint] {} --
                   (C) node [mypoint] {} -- cycle
@@ -118,7 +118,7 @@ maximal $d+1$ Vektoren im $\R^d$ affin unabhängig sein können.
         \end{scope}
     \end{tikzpicture}
     \caption{$0$- bis $3$-dimensionale Simplizes}
-    \label{fig:simplices}
+    \label{gsc:fig:simplices}
 \end{figure}
 
 \begin{thDef}%
@@ -174,7 +174,7 @@ simpliziale Komplex das leere Simplex.
             \coordinate (G) at (4,0,0);
             \coordinate (H) at (4.5,0.7,0);
             
-            \draw [fill=black!30]
+            \draw [fill=black!20]
                   (A) node [mypoint] {} --
                   (B) node [mypoint] {} --
                   (C) node [mypoint] {} -- cycle
@@ -182,8 +182,8 @@ simpliziale Komplex das leere Simplex.
             \draw [dashed] (A) -- (D) -- (C) (D) -- (B);
             
             \draw (B) -- (E);
-            \draw [fill=black!30] (E) -- (F1) -- (F2) -- cycle;
-            \draw [fill=black!30] (G) -- (F1) -- (F2) -- cycle;
+            \draw [fill=black!20] (E) -- (F1) -- (F2) -- cycle;
+            \draw [fill=black!20] (G) -- (F1) -- (F2) -- cycle;
             \path (E)  node [mypoint] {} 
                   (F1) node [mypoint] {}
                   (F2) node [mypoint] {};
@@ -203,8 +203,8 @@ simpliziale Komplex das leere Simplex.
             \coordinate (F3) at (3,0,0);
             \coordinate (G) at (4,0,0);
             
-            \draw [fill=black!30] (E) -- (F1) -- (F2) -- cycle;
-            \draw [fill=black!30] (G) -- (F1) -- (F3) -- cycle;
+            \draw [fill=black!20] (E) -- (F1) -- (F2) -- cycle;
+            \draw [fill=black!20] (G) -- (F1) -- (F3) -- cycle;
             \path (E)  node [mypoint] {} 
                   (F1) node [mypoint] {}
                   (F2) node [mypoint] {}
@@ -212,7 +212,7 @@ simpliziale Komplex das leere Simplex.
         \end{scope}
         
         \begin{scope}[shift={(10.5,-1)}]
-            \draw [fill=black!30] 
+            \draw [fill=black!20] 
                 (0,0) node [mypoint] {} --
                 (2,0) node [mypoint] {} -- 
                 (1,1) node [mypoint] {};
@@ -221,7 +221,7 @@ simpliziale Komplex das leere Simplex.
     \end{tikzpicture}
     \caption{Simplizialer Komplex (links) und 
              \emph{keine} simplizialen Komplexe (rechts)}
-    \label{fig:simplicalcomplex}
+    \label{gsc:fig:simplicalcomplex}
 \end{figure}
 
 \begin{thDef}[Rand und Inneres eines Simplex]
@@ -354,17 +354,36 @@ Einen Beweis dieses Satzes findet man beispielsweise bei
 Bredon\cite[Ch.\,I,\;16.]{bookc:bredon93} oder bei
 Munkres\cite[Ch.\,1,\;\S1,\;1.1]{bookc:munkres84}.
 
-\begin{thBeispiel}
+\begin{thBeispiel}\label{gsc:bsp:spheretriang}
     Zu $d\in\N[\geq1]$ erhalten wir also eine Triangulierung der Sphäre
     $S^{d-1}$ wie folgt: Sei $\sigma$ ein beliebiges $d$-Simplex. Wir bilden
     dann den zugehörigen simplizialen Komplex und entfernen die einzige
     $d$-dimensionale Seite (also $\sigma$ selbst) und erhalten so einen
     simplizialen Komplex $\Delta(\sigma)\setminus\{\sigma\}$, dessen Polyeder
     nach \cref{gsc:simplicescompact} und \cref{gsc:convexsethomeodisk} zur
-    Einheitssphäre~$S^{d-1}$ homöomorph ist.
+    Einheitssphäre~$S^{d-1}$ homöomorph ist. Der Homöomorphismus ist dann
+    gerade durch die Zentralprojektion von einem Punkt im Inneren des Simplex
+    aus auf die Sphärenoberfläche gegeben (siehe \cref{gsc:fig:spheretriang}).
 \end{thBeispiel}
 
-% TODO: Skizze
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[scale=2]
+        \draw (0,0) -- (1,0) -- ++(120:1) -- cycle;
+        \path [name path=m1] (0,0) -- (30:1);
+        \path [name path=m2] (1,0) -- ++(150:1);
+        \path [name intersections={of=m1 and m2,by=C}];
+        \draw let \p1=(C), \n1 = {veclen(\x1,\y1)} in (C) circle [radius=\n1];
+        
+        \foreach \ang in {0,30,...,330} 
+            \draw let \p1=(C), \n1 = {veclen(\x1,\y1)} in
+                [->, color=black!20, opacity=0.65, densely dotted]
+                (C) -- +(\ang:\n1);
+            
+    \end{tikzpicture}
+    \caption{\cref{gsc:bsp:spheretriang} für $d=2$}
+    \label{gsc:fig:spheretriang}
+\end{figure}
 
 Weitere Triangulierungen von Sphären erhalten wir (auch mithilfe der obigen
 Resultat) aus sogenannten \emph{Kreuzpolytopen}:
@@ -387,16 +406,57 @@ Triangulierungen. Wir betrachten noch ein Beispiel:
     Wir erinnern uns daran, dass wir einen Torus erhalten, wenn wir
     gegenüberliegende Seiten eines Quadrats (in gleicher Richtung) miteinander
     identifizieren.
-    % TODO: Skizze!?
+    \begin{center}
+        \newcommand{\myarrow}[1][0]{%
+            \tikz\draw[-triangle 90] (0,0) -- (#1:0.01pt);
+        }
+        \begin{tikzpicture}[%
+                scale=2,
+                mypoint/.style={shape=circle, inner sep=1.5pt, color=black, fill}
+            ]
+            \draw [fill=black!20] 
+                (0,0) -- (1,0) node [pos=0.55] {\myarrow[0]}
+                      -- (1,1) node [pos=0.50] {\myarrow[90]}
+                               node [pos=0.55] {\myarrow[90]}
+                      -- (0,1) node [pos=0.45] {\myarrow[0]}
+                      -- (0,0) node [pos=0.45] {\myarrow[90]}
+                               node [pos=0.50] {\myarrow[90]};
+        \end{tikzpicture}
+    \end{center}
     Diese Beobachtung können wir nun benutzen, um eine Triangulierung des Torus
     zu konstruieren. Dabei müssen wir aber vorsichtig sein, denn zum Beispiel
     stellt 
-    \[ \text{Skizze} \] % TODO
+    \begin{center}
+        \begin{tikzpicture}[%
+                scale=3,
+                mypoint/.style={shape=circle, inner sep=1.5pt, color=black, fill}
+            ]
+            \draw [fill=black!20] (0,0) rectangle (1,1);
+            \draw (0,0) -- (1,1);
+            \foreach \mycoord in {(0,0),(0,1),(1,0),(1,1)}
+                \node [mypoint] at \mycoord {};
+        \end{tikzpicture}
+    \end{center}
     eine gültige Triangulierung des Quadrats dar, wenn wir aber die Seiten wie
     zuvor miteinander identifizieren, so bilden die dargestellten Dreiecke
     keinen simplizialen Komplex mehr! (Warum?) Wir benötigen also eine feinere
     Triangulierung des Ausgangsquadrats, zum Beispiel folgende:
-    \[ \text{Skizze} \] % TODO
+    \begin{center}
+        \begin{tikzpicture}[%
+                mypoint/.style={shape=circle, inner sep=1.5pt, color=black, fill}
+        ]
+            \foreach \myx in {0,1,2} {
+                \foreach \myy in {0,1,2} {
+                    \begin{scope}[shift={(\myx,\myy)}]
+                        \draw [fill=black!20] (0,0) rectangle (1,1);
+                        \draw (0,0) -- (1,1);
+                        \foreach \mycoord in {(0,0),(0,1),(1,0),(1,1)}
+                        \node [mypoint] at \mycoord {};
+                    \end{scope}
+                }
+            }
+        \end{tikzpicture}
+    \end{center}
     Identifizieren wir nun die äußeren Seiten, so sehen wir, dass wir eine
     Triangulierung des Torus gefunden haben.\footnote{%
         Es gibt Triangulierungen des Torus mit weniger $2$-Simplizes. Allerdings
