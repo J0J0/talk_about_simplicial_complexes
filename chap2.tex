@@ -34,19 +34,100 @@ gegeben:
     \Mid E_\sigma \text{ ist Eckenmenge eines Simplex $\sigma\in\Delta$} \bigr\}
 \]
 Dann ist $(E,K)$ klarerweise ein abstrakter simplizialer Komplex, welchen wir
-eine \emph{geometrische Realisierung von $\Delta$} nennen. Das Polyeder
-$\polyeder\Delta$ bezeichnen wir dann auch als ein \emph{Polyeder von $K$}.
+eine \emph{geometrische Realisierung von $\Delta$} nennen. (Siehe
+\cref{asc:fig:geomrealization}.) Das Polyeder $\polyeder\Delta$ bezeichnen wir
+dann auch als ein \emph{Polyeder von $K$}.
 
-% TODO: Beispiel mit Skizze
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[%
+        mypoint/.style={shape=circle, inner sep=1.5pt, color=black, fill}
+    ]
+        \coordinate (1) at (0,0);
+        \coordinate (2) at (1,-1);
+        \coordinate (3) at (2,0);
+        \coordinate (4) at (3,1);
+        \coordinate (5) at (2,2);
+        \coordinate (6) at (0.5,1.5);
+        
+        \draw (1) -- (2) -- (3) -- cycle;
+        \draw [fill=black!20] (3) -- (4) -- (5) -- cycle;
+        
+        \foreach \n/\ang in 
+            {1/left,2/above,3/below right,4/right,5/left,6/above}
+            \node [mypoint,label=\ang:$\n$] at (\n) {};
+            
+        \node [align=left] at (8,1) {%
+            $\displaystyle
+            \bigl\{\; \{1\}, \{2\}, \{3\}, \{4\}, \{5\}, \{6\},$    \\
+            $\displaystyle\hphantom{\bigl\{\;}
+                    \{1,2\}, \{2,3\}, \{1,3\},$                     \\
+            $\displaystyle\hphantom{\bigl\{\;}
+                    \{3,4\}, \{4,5\}, \{3,5\}, \{3,4,5\}
+            \;\bigr\}$%
+        };
+    \end{tikzpicture}
+    \caption{Geometrische Realisierung (links) und zugehöriger abstrakter
+    simplizialer Komplex (rechts)}
+    \label{asc:fig:geomrealization}
+\end{figure}
 
 \begin{thBeispiel}[Graphen als abstrakte simpliziale Komplexe]
     Jeder (einfache, ungerichtete) Graph $(\tilde E,\tilde K)$ mit
     Eckenmenge~$\tilde E$ und Kantenmenge~$\tilde K$ definiert einen
     eindimensionalen simplizialen Komplex~$(E,K)$: Setzte $E\defeq\tilde E$ und
-    $K\defeq \{ A \Mid A\subset B\in\tilde K \}$.
-
-    % TODO: Beispielskizze
+    $K\defeq \{ A \Mid A\subset B\in\tilde K \}$. 
+    (Siehe \cref{asc:fig:geomrealization}.)
 \end{thBeispiel}
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[%
+            mypoint/.style={shape=circle, inner sep=1.5pt, color=black, fill}
+    ]
+    \coordinate (1) at (0,0);
+    \coordinate (2) at (2,0);
+    \coordinate (3) at (2,1);
+    \coordinate (4) at (2,2);
+    \coordinate (5) at (0,2);
+    \coordinate (6) at (1,1);
+
+    \draw (1) \foreach \n in {2,...,6,1,5} { -- (\n) } (6) -- (3);
+    \foreach \n/\ang in 
+        {1/left,2/right,3/right,4/right,5/left,6/above right}
+        \node [mypoint,label=\ang:$\n$] at (\n) {};
+        
+    \node [align=left] at (5.5,1) {%
+        $\displaystyle
+            \tilde E = \{ 1,2,3,4,5,6 \}$                       \\
+        $\displaystyle
+            \tilde K = \bigl\{\; 
+                \{1,2\}, \{2,3\},$\\
+        $\displaystyle\quad
+                \{3,4\}, \{4,5\}, \{5,1\},$   \\
+        $\displaystyle\quad
+                \{1,6\}, \{3,6\}, \{5,6\}
+        \;\bigr\}$
+    };
+    
+    \node [align=left] at (10.5,1) {%
+        $\displaystyle
+        \bigl\{\; \{1\}, \{2\}, \{3\},$         \\
+        $\displaystyle\hphantom{\bigl\{\;}
+                \{4\}, \{5\}, \{6\},$          \\
+        $\displaystyle\hphantom{\bigl\{\;}
+                \{1,2\}, \{2,3\},$              \\
+        $\displaystyle\hphantom{\bigl\{\;}
+                \{3,4\}, \{4,5\}, \{5,1\},$     \\
+        $\displaystyle\quad
+                \{1,6\}, \{3,6\}, \{5,6\}
+        \;\bigr\}$
+    };
+    \end{tikzpicture}
+    \caption{Graph (links), Graph $(\tilde E,\tilde K)$ abstrakt (mittig) 
+        und zugehöriger abstrakter simplizialer Komplex (rechts)}
+    \label{asc:fig:graphtocomplex}
+\end{figure}
 
 Man sieht relativ einfach ein, dass jeder endliche simpliziale Komplex $(E,K)$ 
 eine geometrische Realisierung im $\R^{\abs{E}-1}$ hat, siehe beispielsweise
@@ -199,8 +280,8 @@ Folgende Definitionen legen fest, wie wir dies tun wollen:
 \begin{thDef}[Partielle Ordnung auf simplizialem Komplex]
     Ist $K$ ein endlicher simplizialer Komplex, so wird
     $K\setminus\{\emptyset\}$ durch die Inklusionsrealtion~$\subset$ partiell
-    geordnet. Wir bezeichnen diese zu $K$ assozierte partiell geordnete Menge
-    mit $P(K)$.
+    geordnet. Wir bezeichnen diese zu $K$ assozierte (endliche) 
+    partiell geordnete Menge mit $P(K)$.
 \end{thDef}
 
 % TODO: kurze Beispiele für beide Operationen
