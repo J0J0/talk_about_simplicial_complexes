@@ -115,9 +115,14 @@ ein Hilfsresultat, das aber auch für sich allein genommen interessant ist:
             }
         \end{xy}
     \end{equation*}
-    Die untere horizontale Abbildung sei ein Reaktrakt von $D^n\times I$ auf
+    Die untere horizontale Abbildung sei eine Retraktion von $D^n\times I$ auf
     $(S^{n-1}\times I)\cup(D^n\times\{0\})$, welcher existiert, da
-    $S^{n-1}\hookrightarrow D^n$ eine Kofaserung ist. Für $g$ nehmen wir die
+    $S^{n-1}\hookrightarrow D^n$ eine Kofaserung ist.\footnote{%
+        Oder man nehme eine explizite Retraktion zum Beispiel von
+        tom Dieck\cite[Ch.\,2,\;2.3.5]{bookc:tomdieck08}, welche bei diesem
+        gerade zum Beweis dieser letzten Aussage benutzt wird.%
+    }
+    Für $g$ nehmen wir die
     verklebte Abbildung 
     \[ g \defeq \bigl(f\vert_A^{-1} \times\id_I\bigr) \cup_{S^{n-1}\times\{0\}}
         \bigl( f^{-1}\times\const_0 \bigr)
@@ -135,11 +140,12 @@ ein Hilfsresultat, das aber auch für sich allein genommen interessant ist:
     \]
     Betrachte dann ein Simplex maximaler Dimension aus $K\setminus L$, bzw. das
     zugehörige geometrische Simplex~$\sigma$. Sei $r'$ dann eine Retraktion wie
-    aus dem vorherigen Abschnitt, welche wir mit der Identität auf $\bigcup
-    (\Delta\setminus\{\sigma\})$ verkleben können. Da es nur endlich viele
-    solcher Simplizes~$\sigma$ gibt, können wir dies der Reihe nach mit allen
-    derartigen Simplizes durchführen bis es keine Simplizes aus $K\setminus L$
-    mehr gibt, welche noch \enquote{aufgedickt} sind. Dieser Prozess liefert
-    letztlich also eine Retraktion~$r$ wie gewünscht.
+    aus dem vorherigen Abschnitt, welche wir mit der Identität auf
+    $\bigcup_{\sigma'\in\Delta\setminus\{\sigma\}} (\sigma'\times I)$ verkleben
+    können. Da es nur endlich viele solcher Simplizes~$\sigma$ gibt, können wir
+    dies der Reihe nach mit allen derartigen Simplizes durchführen bis es keine
+    Simplizes aus $K\setminus L$ mehr gibt, welche noch \enquote{aufgedickt}
+    sind. Dieser Prozess liefert letztlich also eine Retraktion~$r$ wie
+    gewünscht.
     \\
 \end{proof}
