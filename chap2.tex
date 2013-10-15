@@ -7,33 +7,33 @@ beschreiben zu können.
 
 \begin{thDef}%
     [Abstrakter simplizialer Komplex, abstraktes Simplex, Dimension, Teilkomplex]%\hfill\\
-    Ist $E$ eine Menge und $K\subset\pot{E}$, so dass alle Elemente von $K$
-    endliche Mächtigkeit haben, so ist $(E,K)$ ein \emph{abstrakter simplizialer
+    Ist $V$ eine Menge und $K\subset\pot{V}$, so dass alle Elemente von $K$
+    endliche Mächtigkeit haben, so ist $(V,K)$ ein \emph{abstrakter simplizialer
     Komplex}, falls zusätzlich gilt:
-    \[ \forall\,\sigma\in K 
-        \;\forall\, \sigma'\subset\sigma \colon\; \sigma'\in K
+    \[ \forall\,F\in K 
+        \;\forall\, F'\subset F \colon\; F'\in K
     \]
-    Ein Element $\sigma\in K$ nennen wir \emph{(abstraktes) Simplex} und die
-    \emph{Dimension von $\sigma$} ist gegeben durch $\dim(\sigma) \defeq
-    \abs{\sigma}-1$.
+    Ein Element $F\in K$ nennen wir \emph{(abstraktes) Simplex} und die
+    \emph{Dimension von $F$} ist gegeben durch $\dim(F) \defeq
+    \abs{F}-1$.
     Die \emph{Dimension von $K$} ist das Maximum der Dimensionen seiner Simplizes (oder
     $\infty$, falls dieses nicht existiert):
-    \[ \dim(K) \defeq \max_{\sigma\in K}\,\dim(\sigma)  \;\in\N\cup\{\infty\} \]
-    Wenn $\abs{E}$ endlich ist, so sprechen wir von einem \emph{endlichen
-    simplizialen Komplex}. Sind $E'\subset E,\; K'\subset K$ und definiert
-    $(E',K')$ selbst einen simplizialen Komplex, so nennen wir $(E',K')$ einen
-    \emph{Teilkomplex von $(E,K)$}.
+    \[ \dim(K) \defeq \max_{F\in K}\,\dim(F)  \;\in\N\cup\{\infty\} \]
+    Ist $\abs{V}$ endlich, so sprechen wir von einem \emph{endlichen
+    simplizialen Komplex}. Sind $V'\subset V,$ $K'\subset K$ und definiert
+    $(V',K')$ selbst einen simplizialen Komplex, so nennen wir $(V',K')$ einen
+    \emph{Teilkomplex von $(V,K)$}.
 \end{thDef}
 
-In Zukunft notieren wir anstatt des Paars $(E,K)$ oft nur noch $K$ und
-nehmen an, dass $E=\bigcup K$ gilt. Außerdem können wir aus jedem geometrischen
+In Zukunft notieren wir anstatt des Paars $(V,K)$ oft nur noch $K$ und
+nehmen an, dass $V=\bigcup K$ gilt. Außerdem können wir aus jedem geometrischen
 simplizialen Komplex~$\Delta$ einen abstrakten gewinnen, indem wir wie folgt
-vorgehen: Sei $E \defeq E(\Delta)$ die Eckenmenge von $\Delta$ und $K$ wie folgt
+vorgehen: Sei $V \defeq V(\Delta)$ die Eckenmenge von $\Delta$ und $K$ wie folgt
 gegeben:
-\[ K \defeq \bigl\{ E_\sigma 
-    \Mid E_\sigma \text{ ist Eckenmenge eines Simplex $\sigma\in\Delta$} \bigr\}
+\[ K \defeq \bigl\{ V_\sigma 
+    \Mid V_\sigma \text{ ist Eckenmenge eines Simplex $\sigma\in\Delta$} \bigr\}
 \]
-Dann ist $(E,K)$ klarerweise ein abstrakter simplizialer Komplex, welchen wir
+Dann ist $(V,K)$ klarerweise ein abstrakter simplizialer Komplex, welchen wir
 eine \emph{geometrische Realisierung von $\Delta$} nennen. (Siehe
 \cref{asc:fig:geomrealization}.) Das Polyeder $\polyeder\Delta$ bezeichnen wir
 dann auch als ein \emph{Polyeder von $K$}.
@@ -43,20 +43,22 @@ dann auch als ein \emph{Polyeder von $K$}.
     \begin{tikzpicture}[%
         mypoint/.style={shape=circle, inner sep=1.5pt, color=black, fill}
     ]
-        \coordinate (1) at (0,0);
-        \coordinate (2) at (1,-1);
-        \coordinate (3) at (2,0);
-        \coordinate (4) at (3,1);
-        \coordinate (5) at (2,2);
-        \coordinate (6) at (0.5,1.5);
-        
-        \draw (1) -- (2) -- (3) -- cycle;
-        \draw [fill=black!20] (3) -- (4) -- (5) -- cycle;
-        
-        \foreach \n/\ang in 
-            {1/left,2/above,3/below right,4/right,5/left,6/above}
-            \node [mypoint,label=\ang:$\n$] at (\n) {};
+        \begin{scope}[scale=0.90]
+            \coordinate (1) at (0,0);
+            \coordinate (2) at (1,-1);
+            \coordinate (3) at (2,0);
+            \coordinate (4) at (3,1);
+            \coordinate (5) at (2,2);
+            \coordinate (6) at (0.5,1.5);
             
+            \draw (1) -- (2) -- (3) -- cycle;
+            \draw [fill=black!20] (3) -- (4) -- (5) -- cycle;
+            
+            \foreach \n/\ang in 
+                {1/left,2/above,3/below right,4/right,5/left,6/above}
+                \node [mypoint,label=\ang:$\n$] at (\n) {};
+        \end{scope}
+
         \node [align=left] at (8,1) {%
             $\displaystyle
             \bigl\{\; \{1\}, \{2\}, \{3\}, \{4\}, \{5\}, \{6\},$    \\
@@ -73,10 +75,10 @@ dann auch als ein \emph{Polyeder von $K$}.
 \end{figure}
 
 \begin{thBeispiel}[Graphen als abstrakte simpliziale Komplexe]
-    Jeder (einfache, ungerichtete) Graph $(\tilde E,\tilde K)$ mit
-    Eckenmenge~$\tilde E$ und Kantenmenge~$\tilde K$ definiert einen
-    eindimensionalen simplizialen Komplex~$(E,K)$: Setzte $E\defeq\tilde E$ und
-    $K\defeq \{ A \Mid A\subset B\in\tilde K \}$. 
+    Jeder (einfache, ungerichtete) Graph $(\tilde V,E)$ mit
+    Eckenmenge~$\tilde V$ und Kantenmenge~$E$ definiert einen
+    eindimensionalen simplizialen Komplex~$(V,K)$: Setzte $V\defeq\tilde V$ und
+    $K\defeq \{ A \Mid A\subset \{u,v\}\in E \}$. 
     (Siehe \cref{asc:fig:geomrealization}.)
 \end{thBeispiel}
 
@@ -99,9 +101,9 @@ dann auch als ein \emph{Polyeder von $K$}.
         
     \node [align=left] at (5.5,1) {%
         $\displaystyle
-            \tilde E = \{ 1,2,3,4,5,6 \}$                       \\
+            \tilde V = \{ 1,2,3,4,5,6 \}$                       \\
         $\displaystyle
-            \tilde K = \bigl\{\; 
+            E = \bigl\{\; 
                 \{1,2\}, \{2,3\},$\\
         $\displaystyle\quad
                 \{3,4\}, \{4,5\}, \{5,1\},$   \\
@@ -124,13 +126,13 @@ dann auch als ein \emph{Polyeder von $K$}.
         \;\bigr\}$
     };
     \end{tikzpicture}
-    \caption{Graph (links), Graph $(\tilde E,\tilde K)$ abstrakt (mittig) 
+    \caption{Graph (links), Graph $(\tilde V,E)$ abstrakt (mittig) 
         und zugehöriger abstrakter simplizialer Komplex (rechts)}
     \label{asc:fig:graphtocomplex}
 \end{figure}
 
-Man sieht relativ einfach ein, dass jeder endliche simpliziale Komplex $(E,K)$ 
-eine geometrische Realisierung im $\R^{\abs{E}-1}$ hat, siehe beispielsweise
+Man sieht relativ einfach ein, dass jeder endliche simpliziale Komplex $(V,K)$ 
+eine geometrische Realisierung im $\R^{\abs{V}-1}$ hat, siehe beispielsweise
 Matou\v sek\cite[Ch.\,1,\;1.5]{bookc:matousek03}, oder in einer allgemeineren
 Variante Munkres\cite[Ch.\,1,\;\S3,\;3.1]{bookc:munkres84}. Stattdessen
 verweisen wir hier auf \cref{asc:geomrealization}, welcher eine schärfere Aussage
@@ -147,7 +149,7 @@ Komplex eine geometrische Realisierung im $\R^d$ gibt.
     \label{asc:geomrealization}
     \hfill\\
     %
-    Sei $K$ ein eindlicher abstrakter simplizaler Komplex der Dimension 
+    Sei $K$ ein endlicher abstrakter simplizaler Komplex der Dimension 
     $\dim(K)=d\in\N$.
     Dann besitzt $K$ eine geometrische Realisierung im $\R^{2d+1}$.
 \end{thSatz}
@@ -157,8 +159,8 @@ Zum Beweis dieses Satzes benötigen wir noch einige Hilfsmittel.
 \begin{thLemma}[Hinreichende Bedingung für geometrische Realisierung]
     \label{asc:suffprelimgeomrealization}
     %
-    Sei $d\in\N,\; (E,K)$ ein abstrakter simplizialer Komplex und
-    $f\colon E\to\R^d$ eine injektive Abbildung mit folgender Eigenschaft:
+    Seien $d\in\N,\; (V,K)$ ein abstrakter simplizialer Komplex und
+    $f\colon V\to\R^d$ eine injektive Abbildung mit folgender Eigenschaft:
     \[ \forall\,F,G\in K\colon \; f(F\cup G) \text{ ist eine Menge affin
         unabhängiger Vektoren}
     \]
@@ -168,9 +170,8 @@ Zum Beweis dieses Satzes benötigen wir noch einige Hilfsmittel.
 \end{thLemma}
 
 \begin{proof}
-    Seien $d,(E{,}K),f$ wie in der Behauptung und seien $F,G\in K$. Es ist nur
-    zu zeigen, dass die zweite Bedingung aus \cref{gsc:def:gsc} erfüllt ist 
-    (-- der Rest ist klar).
+    Es ist nur zu zeigen, dass die zweite Bedingung aus \cref{gsc:def:gsc}
+    erfüllt ist (-- der Rest ist klar). Seien dazu $F,G\in K$. 
     Da $f(F\cup G)$ nach Voraussetzung affin unabhängig ist, definiert 
     $\sigma \defeq \conv\bigl(f(F\cup G)\bigr)$ ein Simplex im $\R^d$. 
     Außerdem gilt offenbar $f(F), f(G)\subset f(F\cup G)$, weshalb
