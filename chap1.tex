@@ -68,20 +68,20 @@ maximal $d+1$ Vektoren im $\R^d$ affin unabhängig sein können.
 \end{thBemerkung}
 
 
-\begin{thDef}[(Geometrisches) Simplex, Knotenpunkte, Dimension]
+\begin{thDef}[(Geometrisches) Simplex, Eckpunkte, Dimension]
     \label{gsc:def:simplex}
     %
     Ist $d\in\N$ und $A\subset\R^d$ eine endliche Menge affin unabhängiger
     Vektoren im $\R^d$ (oder leer), so bezeichnet man $\sigma \defeq \conv(A)$ als
     \emph{(geometrisches) Simplex} und nennt die Elemente aus $A$
-    \emph{Knotenpunkte (von~$\sigma$)}, oder kurz \emph{Knoten (von~$\sigma$)}. Die
+    \emph{Eckpunkte (von~$\sigma$)}, oder kurz \emph{Ecken (von~$\sigma$)}. Die
     \emph{Dimension von $\sigma$} ist dann durch $\dim(\sigma) \defeq \abs{A}-1$
     definiert und man nennt ein $n$-dimensionales Simplex auch kurz
     \emph{$n$-Simplex} (wobei $n\in\N\cup\{-1\}$).
 \end{thDef}
 
 \begin{thDef}[Seite eines Simplex]
-    Ist $d\in\N$ und $\sigma$ ein Simplex mit der Knotenmenge
+    Ist $d\in\N$ und $\sigma$ ein Simplex mit der Eckenmenge
     $E \subset\R^d$, so ist die konvexe Hülle $\conv(E')$ einer beliebigen 
     Teilmenge $E'\subset E$ wieder ein Simplex und jedes dieser Simplizes wird
     als \emph{Seite von $\sigma$} bezeichnet.
@@ -123,7 +123,7 @@ maximal $d+1$ Vektoren im $\R^d$ affin unabhängig sein können.
 \end{figure}
 
 \begin{thDef}%
-    [Geometrischer simplizialer Komplex, Dimension, Polyeder, Knotenmenge]
+    [Geometrischer simplizialer Komplex, Dimension, Polyeder, Eckenmenge]
     \label{gsc:def:gsc}
     %
     Sei $d\in\N$. Ist $\Delta$ eine nicht-leere Menge von (geometrischen)
@@ -149,7 +149,7 @@ maximal $d+1$ Vektoren im $\R^d$ affin unabhängig sein können.
     $\sigma$ ist (wobei $\sigma$ die Teilraumtopologie trägt). Wir nennen dann
     $\polyeder\Delta$ das \emph{zu $\Delta$ gehörige Polyeder}.
     Außerdem definieren wir $V(\Delta)$ als die Vereinigung
-    aller Knotenmengen von Simplizes in $\Delta$.
+    aller Eckenmengen von Simplizes in $\Delta$.
 \end{thDef}
 
 \Achtung
@@ -279,13 +279,13 @@ folgende Lemma:
 
 \begin{proofsketch}
     Falls $\Delta(\sigma)$ ein simplizialer Komplex ist, ist klar, dass dieser
-    endlich ist, da die Anzahl der Knoten von $\sigma$ endlich ist. Außerdem gilt
+    endlich ist, da die Anzahl der Ecken von $\sigma$ endlich ist. Außerdem gilt
     $\sigma\in\Delta(\sigma)$, womit $\dim\bigl(\Delta(\sigma)\bigr) = n$ klar
     ist. Es bleibt also zu zeigen, dass $\Delta(\sigma)$ einen simplizialen
     Komplex definiert. Die erste Bedingung in \cref{gsc:def:gsc} ist dabei
     offensichtlich erfüllt und für die zweite zeigt man mithilfe von
     \cref{gsc:convexhullviaconvexcombinations} und einfachen Umformungen, dass
-    für Teilmengen $A,B$ der Knotenmenge von $\sigma$ stets $\conv(A)\cap\conv(B)
+    für Teilmengen $A,B$ der Eckenmenge von $\sigma$ stets $\conv(A)\cap\conv(B)
     = \conv(A\cap B)$ gilt.
     \\
 \end{proofsketch}
