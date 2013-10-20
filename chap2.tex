@@ -36,7 +36,8 @@ gegeben:
 Dann ist $(V,K)$ klarerweise ein abstrakter simplizialer Komplex und wir nennen
 $\Delta$ eine \emph{geometrische Realisierung von $K$}. (Siehe
 \cref{asc:fig:geomrealization}.) Das Polyeder $\polyeder\Delta$ bezeichnen wir
-dann auch als ein \emph{Polyeder von $K$}.
+dann auch als ein \emph{Polyeder von $K$}. (Letzteres ist bis auf Homöomorphie 
+eindeutig, siehe etwa Munkres\cite[Ch.\,1,\;\S3,\;3.1(b)]{bookc:munkres84}.)
 
 \begin{figure}
     \centering
@@ -75,11 +76,11 @@ dann auch als ein \emph{Polyeder von $K$}.
 \end{figure}
 
 \begin{thBeispiel}[Graphen als abstrakte simpliziale Komplexe]
-    Jeder (einfache, ungerichtete) Graph $(\tilde V,E)$ mit
-    Eckenmenge~$\tilde V$ und Kantenmenge~$E$ definiert einen
-    eindimensionalen simplizialen Komplex~$(V,K)$: Setze $V\defeq\tilde V$ und
-    $K\defeq \{ A \Mid A\subset \{u,v\}\in E \}$. 
-    (Siehe \cref{asc:fig:geomrealization}.)
+    Jeder (einfache, ungerichtete) Graph $(V,E)$ mit
+    Eckenmenge~$V$ und Kantenmenge~$E$ definiert einen
+    eindimensionalen simplizialen Komplex~$(V,K)$, wobei 
+    $K\defeq \{ A \Mid A\subset \{u,v\}\in E \}$.
+    (Siehe \cref{asc:fig:graphtocomplex}.)
 \end{thBeispiel}
 
 \begin{figure}
@@ -101,7 +102,7 @@ dann auch als ein \emph{Polyeder von $K$}.
         
     \node [align=left] at (5.5,1) {%
         $\displaystyle
-            \tilde V = \{ 1,2,3,4,5,6 \}$       \\
+            V = \{ 1,2,3,4,5,6 \}$              \\
         $\displaystyle
             E = \bigl\{\; 
                 \{1,2\}, \{2,3\},$              \\
@@ -126,7 +127,7 @@ dann auch als ein \emph{Polyeder von $K$}.
         \;\bigr\}$
     };
     \end{tikzpicture}
-    \caption{Graph (links), Graph $(\tilde V,E)$ abstrakt (mittig) 
+    \caption{Graph (links), Graph $(V,E)$ abstrakt (mittig) 
         und zugehöriger abstrakter simplizialer Komplex (rechts)}
     \label{asc:fig:graphtocomplex}
 \end{figure}
@@ -134,7 +135,7 @@ dann auch als ein \emph{Polyeder von $K$}.
 Man sieht relativ einfach ein, dass jeder endliche simpliziale Komplex $(V,K)$ 
 eine geometrische Realisierung im $\R^{\abs{V}-1}$ hat, siehe beispielsweise
 Matou\v sek\cite[Ch.\,1,\;1.5]{bookc:matousek03}, oder in einer allgemeineren
-Variante Munkres\cite[Ch.\,1,\;\S3,\;3.1]{bookc:munkres84}. Stattdessen
+Variante Munkres\cite[Ch.\,1,\;\S3,\;3.1(a)]{bookc:munkres84}. Stattdessen
 verweisen wir hier auf \cref{asc:geomrealization}, welcher eine schärfere Aussage
 liefert.
 
@@ -212,10 +213,6 @@ nützlichen Eigenschaften:
             in maximal~$d$ Punkten.
         \item\label{asc:momentumcurveprop:pointsaffinlyindependent}
             Je $d+1$ Punkte aus $\Image(\gamma)$ sind affin unabhängig.
-        \item
-            Schneidet eine (affine) Hyperebene $\gamma$ in $d$ verschiedenen 
-            Punkten, so wechselt $\gamma$ an jeder dieser Stellen von einem
-            durch die Hyperebene gegebenen Halbraum zum anderen.
     \end{enumerate}
 \end{thLemma}
 
@@ -265,25 +262,29 @@ Zur Erinnerung geben wir kurz die folgende Definition:
     \end{enumerate}
 \end{thDef}
 
-Wir können aus jeder endlichen partiell geordneten Menge einen endlichen 
+Wir können aus jeder (endlichen) partiell geordneten Menge einen (endlichen)
 simplizialen Komplex bilden und umgekehrt.
 Folgende Definitionen legen fest, wie wir dies tun wollen:
 
 \begin{thDef}[Ordnungskomplex]
-    Ist $(P,\leq)$ eine endliche partiell geordnete Menge, so definieren wir den
+    Ist $(P,\leq)$ eine partiell geordnete Menge, so definieren wir den
     \emph{Ordnungskomplex $\Delta(P)$} wie folgt:
     \[ \Delta(P) \defeq \bigl\{ \{x_1,\ldots,x_k\} \subset P \cMid[\;]\big 
         k\in\N,\; x_1\leq \dots \leq x_k \bigr\}
     . \]
-    Die Simplizes von $\Delta(P)$ sind also alle (endlichen) Ketten aus $P$.
+    Die Simplizes von $\Delta(P)$ sind also alle endlichen Ketten aus $P$.
 \end{thDef}
 
 \begin{thDef}[Partielle Ordnung auf simplizialem Komplex]
-    Ist $K$ ein endlicher simplizialer Komplex, so wird
+    Ist $K$ ein simplizialer Komplex, so wird
     $K\setminus\{\emptyset\}$ durch die Inklusionsrelation~\enquote{$\subset$} 
-    partiell geordnet. Wir bezeichnen diese zu $K$ assoziierte (endliche) 
+    partiell geordnet. Wir bezeichnen diese zu $K$ assoziierte 
     partiell geordnete Menge mit $P(K)$.
 \end{thDef}
+
+Beispiele dazu können den Abbildungen
+\ref{asc:fig:ordercomplex}--\ref{asc:fig:barycentricsubdivision}
+entnommen werden.
 
 
 \begin{figure}[b]
@@ -356,7 +357,8 @@ Folgende Definitionen legen fest, wie wir dies tun wollen:
               (5-15) -- (1-5-15)
         ;
         
-        \draw [->, very thick] (9,-0.3) -- node [right=7pt,scale=1.5] {$\subset$} (9,5);
+        \draw [->, very thick] 
+            (9,-0.3) -- node [right=7pt,scale=1.5] {\enquote{$\subset$\kern1pt}} (9,5);
     \end{tikzpicture}
     \caption{Hasse-Diagramm zur partiell geordneten Menge $P(K)$, d.\,h.
         derjenigen partiell geordneten Menge, die wir dem Komplex $K=\Delta(T)$

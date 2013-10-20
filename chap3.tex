@@ -23,8 +23,9 @@ anschließende gewünschte Korollar erhalten:
     [Quotienten von simplizialen Komplexen nach kontraktiblen Teilkomplexen]
     %
     Sei $K$ ein endlicher simplizialer Komplex und $L\subset K$ ein
-    Teilkomplex, für den $\polyeder L$ kontraktibel ist. Dann sind $\polyeder K$
-    und $\polyeder K\mkern2mu/\mkern2mu\polyeder L$ homotopieäquivalente Räume.
+    Teilkomplex, für den $\polyeder L$ kontraktibel ist. Dann ist die kanonische
+    Projektion $\polyeder K \to \polyeder K\mkern2mu/\mkern2mu\polyeder L$
+    eine Homotopieäquivalenz.
 \end{thKorollar}
 
 Bevor wir \cref{quot:inclusioncofib} zeigen können, brauchen wir zuerst noch
@@ -74,7 +75,17 @@ ein Hilfsresultat, das aber auch für sich allein genommen interessant ist:
     Polyeder von $K$ bzw. $L$ mit $X$ bzw. $A$. Weiter bezeichne im Folgenden
     $I\defeq[0,1]$ das Einheitsintervall.
 
-    Da $A$ nach \cref{quot:subcomplexclosed} abgeschlossen in $X$ ist, genügt es
+    Da $A$ nach \cref{quot:subcomplexclosed} abgeschlossen in $X$ ist, 
+    genügt es\footnote{%
+        Siehe tom Dieck\cite[Ch.\,5,\;5.1.2]{bookc:tomdieck08}; man kann sich
+        (anschaulich gesprochen) die gewünschte Homotopie einfach auf dem
+        Retrakt \enquote{zusammenbauen}.
+        Man kann sogar zeigen, dass die Bedingung, dass $A$ abgeschlossen ist, 
+        nicht nötig ist, dass wir also auf \cref{quot:subcomplexclosed} hätten
+        verzichten können. Der Beweis dafür ist aber recht kompliziert, wie man
+        beispielsweise bei Hatcher\cite[Appendix,\,A.18]{bookc:hatcher02}
+        nachlesen kann.%
+    }
     zu zeigen, dass $(A\times I)\cup(X\times\{0\})$ ein Retrakt von $X\times I$
     ist, d.\,h. dass es eine stetige Abbildung
     \begin{gather*}
@@ -84,24 +95,17 @@ ein Hilfsresultat, das aber auch für sich allein genommen interessant ist:
         r \circ \bigl( (A\times I)\cup(X\times\{0\}) \hookrightarrow
         X\times I \bigr) = \id_{(A\times I)\cup(X\times\{0\})}
     \end{gather*}
-    gibt.\footnote{%
-        Man kann zeigen, dass die Bedingung, dass $A$ abgeschlossen ist, nicht
-        nötig ist, dass wir also auf \cref{quot:subcomplexclosed} hätten
-        verzichten können. Der Beweis dafür ist aber recht kompliziert, wie man
-        beispielsweise bei Hatcher\cite[Appendix,\,A.18]{bookc:hatcher02}
-        nachlesen kann.%
-    }
+    gibt.
     Dazu gehen wir wie folgt vor:
 
     \pagebreak[2]
     Zuerst betrachten wir den Fall, dass $X$ ein Simplex und $A$ der Rand
     des Simplex ist. Sei $n\defeq\dim(X)$. Für $n=-1$ gibt es nichts zu tun und
     für $n=0$ ist $A=\emptyset$, also können wir die Projektion (auf
-    $X\times\{0\}$) als Retraktion nehmen. Sei also nun $n\geq1$.
-    Dann wissen wir nach \cref{gsc:convexsethomeodisk}, dass es
-    einen Homöomorphismus 
-    $f\colon X\xrightarrow{\smash{\raisebox{-2pt}{$\sim$}}} D^n$ 
-    gibt, welcher $A$ homöomorph auf $S^{n-1}\subset D^n$ abbildet.
+    $X\times\{0\}$) als Retraktion nehmen. Sei also nun $n\geq1$. Dann wissen
+    wir nach \cref{gsc:convexsethomeodisk}, dass es einen Homöomorphismus
+    $f\colon X \isorightarrow D^n$ gibt, welcher $A$ homöomorph auf
+    $S^{n-1}\subset D^n$ abbildet.
     Wir betrachten dann folgendes Diagramm:
     \begin{equation*}
         \begin{xy}
@@ -117,9 +121,10 @@ ein Hilfsresultat, das aber auch für sich allein genommen interessant ist:
     Die untere horizontale Abbildung sei eine Retraktion von $D^n\times I$ auf
     $(S^{n-1}\times I)\cup(D^n\times\{0\})$, welche existiert, da
     $S^{n-1}\hookrightarrow D^n$ eine Kofaserung ist.\footnote{%
-        Oder man nehme eine explizite Retraktion zum Beispiel von
-        tom Dieck\cite[Ch.\,2,\;2.3.5]{bookc:tomdieck08}, welche bei diesem
-        gerade zum Beweis dieser letzten Aussage benutzt wird.%
+        Eine Begründung für dieses Argument findet man ebenfalls bei
+        tom Dieck\cite[Ch.\,5,\;5.1.2]{bookc:tomdieck08}.
+        Alternativ nehme man eine explizite Retraktion, zum Beispiel die von
+        tom Dieck\cite[Ch.\,2,\;2.3.5]{bookc:tomdieck08}.%
     }
     Für $g$ nehmen wir die
     verklebte Abbildung 
@@ -127,11 +132,14 @@ ein Hilfsresultat, das aber auch für sich allein genommen interessant ist:
         \bigl( f^{-1}\times\const_0 \bigr)
     , \]
     wobei $S^{n-1}\times\{0\}$ abgeschlossen in $D^n\times\{0\}$ und somit $g$
-    stetig ist. Wir erhalten also die gestrichelte Abbildung, die gesuchte
-    Retraktion, indem wir das Diagramm unten herum durchlaufen.
+    stetig ist. 
+    Wir erhalten also die gestrichelte Abbildung, indem wir das Diagramm unten
+    herum durchlaufen. Dass diese nun die gesuchte Retraktion ist, sehen wir
+    sofort anhand der Konstruktion und der Tatsache, dass $A$ von $f$ homöomorph
+    nach $S^{n-1}$ abgebildet wird.    
 
     Nun zum allgemeinen Fall. Ohne Einschränkung gelte 
-    $\emptyset\neq L \subsetneq K$. Ist $\Delta$ die geometrische Realisierung
+    $L \subsetneq K$. Ist $\Delta$ die geometrische Realisierung
     von $K$ zu welchem $X$ das Polyeder ist, dann gilt:
     \[ X \times I 
         = \Bigl(\, \bigcup_{\sigma\in\Delta} \sigma \mkern2mu\Bigr) \times I

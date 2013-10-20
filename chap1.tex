@@ -12,7 +12,7 @@ aber für kombinatorische Anwendungen noch zu allgemein sind.\footnote{%
 }
 Wir interessieren uns daher dafür, wie wir topologische Räume beschreiben
 können, die aus kombinatorisch einfacher zu beschreibenden Bausteinen aufgebaut
-sind. Namentlich werden dies \emph{Strecken, Dreiecke, Tetraeder} und
+sind. Namentlich werden dies \emph{Punkte, Strecken, Dreiecke, Tetraeder} und
 höherdimensionale Objekte desselben Typus sein, welche mathematisch durch
 sogenannte \emph{Simplizes} beschrieben werden können. Dazu benötigen wir
 zunächst die folgenden Begriffe:
@@ -31,13 +31,13 @@ zunächst die folgenden Begriffe:
     \label{gsc:iffaffinlyindependet}
     %
     Seien $n,d\in\N$. Dann sind $v_0,\ldots,v_n\in\R^d$ genau dann affin
-    unabhängig, wenn für ein beliebiges $k\in\setZeroto{n}$ die Familie
+    unabhängig, wenn ein $k\in\setZeroto{n}$ existiert, so dass die Familie
     \[  (v_i - v_k)_{i \in\setZeroto{n}\setminus\{k\}} \] 
     von Vektoren im $\R^d$ linear unabhängig ist.
 \end{thLemma}
 
 Der Beweis ist eine einfache Übung.
-Aus \cref{gsc:iffaffinlyindependet} folgt insbesondere, dass für festes $d\in\N$
+Aus \cref{gsc:iffaffinlyindependet} folgt insbesondere, dass für $d\in\N$
 maximal $d+1$ Vektoren im $\R^d$ affin unabhängig sein können.
 
 \begin{thDef}[Konvexe Menge, konvexe Hülle, Konvexkombination]
@@ -48,16 +48,15 @@ maximal $d+1$ Vektoren im $\R^d$ affin unabhängig sein können.
 
     \newpage
     \noindent
-    Für eine beliebige Teilmenge $A'\subset\R^d$ definiert
+    Für eine Teilmenge $A'\subset\R^d$ definiert
     \[ \conv(A') \defeq 
         \bigcap \,\bigl\{ A\subset\R^d \Mid A'\subset A\text{ konvex} \bigr\}
     \]
     die \emph{konvexe Hülle von $A'$}.
-    
-    \noindent
-    Sind außerdem $n\in\N$ und $v_0,\ldots,v_n\in\R^d$ beliebig sowie
+    %
+    Sind außerdem $n\in\N$ und $v_0,\ldots,v_n\in\R^d$ sowie
     $\lambda_0,\ldots,\lambda_n\in\R[\geq0]$ mit $\isum^n\lambda_i = 1$, so
-    bezeichnet man $\isum^n \lambda_i\,v_i$ als \emph{Konvexkombination der
+    bezeichnet man $\isum^n \lambda_i\,v_i$ als eine \emph{Konvexkombination der
     $v_i$}.
 \end{thDef}
 
@@ -77,20 +76,22 @@ maximal $d+1$ Vektoren im $\R^d$ affin unabhängig sein können.
     \emph{Eckpunkte (von~$\sigma$)}, oder kurz \emph{Ecken (von~$\sigma$)}. Die
     \emph{Dimension von $\sigma$} ist dann durch $\dim(\sigma) \defeq \abs{A}-1$
     definiert und man nennt ein $n$-dimensionales Simplex auch kurz
-    \emph{$n$-Simplex} (wobei $n\in\N\cup\{-1\}$).
+    \emph{$n$-Simplex} (wobei $n\in\N\cup\{-1\}$). 
+    (Siehe \cref{gsc:fig:simplices})
 \end{thDef}
 
 \begin{thDef}[Seite eines Simplex]
-    Ist $d\in\N$ und $\sigma$ ein Simplex mit der Eckenmenge
-    $E \subset\R^d$, so ist die konvexe Hülle $\conv(E')$ einer beliebigen 
-    Teilmenge $E'\subset E$ wieder ein Simplex und jedes dieser Simplizes wird
-    als \emph{Seite von $\sigma$} bezeichnet.
+    Ist $d\in\N$ und $\sigma$ ein Simplex mit der Eckenmenge $E \subset\R^d$, so
+    ist die konvexe Hülle $\conv(E')$ einer Teilmenge $E'$ von $E$ wieder ein
+    Simplex und jedes dieser Simplizes wird als \emph{Seite von $\sigma$}
+    bezeichnet.
 \end{thDef}
+\unskip  % FIXME: Why is this needed here!?
 
 \begin{figure}
     \centering
     \begin{tikzpicture}[%
-            scale=1.5,
+            scale=1.75,
             mypoint/.style={shape=circle, inner sep=1.8pt, color=black, fill}
         ]
         \begin{scope}
@@ -109,7 +110,7 @@ maximal $d+1$ Vektoren im $\R^d$ affin unabhängig sein können.
             \coordinate (B) at (1,0,0);
             \coordinate (C) at (0,1,0);
             \coordinate (D) at (0,0,0);
-
+            
             \draw [fill=black!20]
                   (A) node [mypoint] {} --
                   (B) node [mypoint] {} --
@@ -150,6 +151,7 @@ maximal $d+1$ Vektoren im $\R^d$ affin unabhängig sein können.
     $\polyeder\Delta$ das \emph{zu $\Delta$ gehörige Polyeder}.
     Außerdem definieren wir $V(\Delta)$ als die Vereinigung
     aller Eckenmengen von Simplizes in $\Delta$.
+    (Siehe \cref{gsc:fig:simplicialcomplex}.)
 \end{thDef}
 
 \Achtung
@@ -222,7 +224,7 @@ simpliziale Komplex das leere Simplex.
     \end{tikzpicture}
     \caption{Simplizialer Komplex (links) und 
              \emph{keine} simplizialen Komplexe (rechts)}
-    \label{gsc:fig:simplicalcomplex}
+    \label{gsc:fig:simplicialcomplex}
 \end{figure}
 
 \begin{thDef}[Rand und Inneres eines Simplex]
@@ -233,10 +235,10 @@ simpliziale Komplex das leere Simplex.
 \end{thDef}
 
 \begin{thDef}[Träger]
-    Ist $\Delta$ ein simplizialer Komplex und $x\in\polyeder\Delta$, so gibt es
-    genau ein Simplex $\sigma\in\Delta$, für das $x$ im Inneren von $\sigma$
-    liegt. Dieses bezeichnen wir als \emph{Träger von~$x$} und schreiben dafür
-    $\supp(x)$.
+    Ist $\Delta$ ein simplizialer Komplex und $x\in\polyeder\Delta$, so kann man
+    zeigen, dass es genau ein Simplex $\sigma\in\Delta$ gibt, für das $x$ im
+    Inneren von $\sigma$ liegt. Dieses bezeichnen wir als \emph{Träger von~$x$}
+    und schreiben dafür $\supp(x)$.
 \end{thDef}
 
 \begin{thDef}[Teilkomplex, \texorpdfstring{$k$}{k}-Skelett]
@@ -251,7 +253,7 @@ simpliziale Komplex das leere Simplex.
     nennen. (Insbesondere gilt für $k=0$: $\skeleton\Delta0 = V(\Delta)$.)
 \end{thDef}
 
-\bigskip
+\medskip
 Im Folgenden werden wir hauptsächlich \emph{endliche} simpliziale Komplexe
 betrachten, d.\,h. simpliziale Komplexe mit nur endlich vielen Simplizes. Daher
 halten wir noch folgende Aussage fest:
@@ -264,6 +266,8 @@ halten wir noch folgende Aussage fest:
 \end{thLemma}
 
 Der Beweis ist einfach und wird an dieser Stelle dem Leser zur Übung überlassen.
+(Siehe beispielsweise Munkres\cite[Ch.\,1,\;\S2]{bookc:munkres84}.)
+
 Einfache aber nützliche Beispiele für endliche simpliziale Komplexe liefert das
 folgende Lemma:
 
@@ -296,7 +300,7 @@ Matou\v sek\cite[Ch.\,1,\;1.3.6]{bookc:matousek03}.
 
 \section{Triangulierung}
 \begin{thDef}[Triangulierbar, Triangulierung]
-    Ein beliebiger topologischer Raum~$X$ heißt \emph{triangulierbar}, falls es
+    Ein topologischer Raum~$X$ heißt \emph{triangulierbar}, falls es
     einen simplizialen Komplex $\Delta$ und einen Homöomorphismus
     $\polyeder\Delta \cong X$ gibt. Solch einen Homöomorphismus nennen wir 
     eine \emph{Triangulierung von $X$}.
@@ -341,11 +345,11 @@ Dimension:
     \label{gsc:convexsethomeodisk}
     %
     Sei $d\in\N$ und $A\subset\R^d$ eine konvexe und kompakte Teilmenge mit
-    nicht-leerem Inneren $\setinterior A$. Dann gelten folgende Homöomorphien:
-    \[ A\cong D^d \qqtextqq{mit} 
-        \setboundary{A} \cong S^{d-1} \subset D^d 
-    \]
-    (als Einschränkung des linken Homöomorphismus).
+    nicht-leerem Inneren $\setinterior A$. Dann gibt es einen Homöomorphismus
+    \[ f\colon A \isorightarrow D^d \qqtextqq{mit} 
+        f\vert_{\setboundary{A}}\colon \setboundary{A} \isorightarrow 
+        S^{d-1} \subset D^d 
+    . \]
 \end{thSatz}
 
 Einen Beweis dieses Satzes findet man beispielsweise bei
@@ -354,19 +358,26 @@ Munkres\cite[Ch.\,1,\;\S1,\;1.1]{bookc:munkres84}.
 
 \begin{thBeispiel}\label{gsc:bsp:spheretriang}
     Zu $d\in\N[\geq1]$ erhalten wir also eine Triangulierung der Sphäre
-    $S^{d-1}$ wie folgt: Sei $\sigma$ ein beliebiges $d$-Simplex. Wir bilden
+    $S^{d-1}$ wie folgt: Sei $\sigma$ ein $d$-Simplex. Wir bilden
     dann den zugehörigen simplizialen Komplex und entfernen die einzige
-    $d$-dimensionale Seite (also $\sigma$ selbst) und erhalten so einen
+    $d$-dimensionale Seite (also $\sigma$ selbst). Wir erhalten so einen
     simplizialen Komplex $\Delta(\sigma)\setminus\{\sigma\}$, dessen Polyeder
     nach \cref{gsc:simplicescompact} und \cref{gsc:convexsethomeodisk} zur
-    Einheitssphäre~$S^{d-1}$ homöomorph ist. Der Homöomorphismus ist dann
+    Einheitssphäre~$S^{d-1}$ homöomorph ist. Ein Homöomorphismus ist dann
     gerade durch die Zentralprojektion von einem Punkt im Inneren des Simplex
     aus auf die Sphärenoberfläche gegeben (siehe \cref{gsc:fig:spheretriang}).
+    Nehmen wir ohne Einschränkung an, dass $0$ im Inneren von
+    $\polyeder{\Delta(\sigma)\setminus\{\sigma\}}$ liegt, dann ist eine
+    entsprechende Zentralprojektion gerade durch die Abbildung
+    \[ \polyeder{\Delta(\sigma)\setminus\{\sigma\}} \to S^{d-1},\quad
+        x\mapsto \frac{x}{\norm{x}_{\mathrlap{2}}}
+    \]
+    gegeben, wobei $\norm{\,\cdot\,}_2$ die euklidsche Norm bezeichnet.
 \end{thBeispiel}
 
 \begin{figure}
     \centering
-    \begin{tikzpicture}[scale=3]
+    \begin{tikzpicture}[scale=2.9]
         \draw (0,0) -- (1,0) -- ++(120:1) -- cycle;
         \path [name path=m1] (0,0) -- (30:1);
         \path [name path=m2] (1,0) -- ++(150:1);
@@ -395,12 +406,12 @@ Resultate) aus sogenannten \emph{Kreuzpolytopen}:
 % TODO: Skizzen für d=0..3
 
 Offenbar ist $\conv(\{\alpha_1\,e_1,\ldots,\alpha_d\,e_d\})$ für
-$\alpha\in\{-1,1\}^d$ ein Simplex und alle derartigen Simplizes zusammen ergeben
-gerade den Rand des entsprechenden Kreuzpolytops. Die Kollektion aller solchen
-Simplizes zusammen mit allen Seiten ergibt also einen simplizialen Komplex,
-womit wir analog zum letzten Beispiel eine Triangulierung der Sphäre erhalten.
-Aufgrund der offensichtlichen Symmetrieeigenschaften der Kreuzpolytope erhalten
-wir somit nützliche symmetrische Triangulierungen. 
+$\alpha\in\{-1,1\}^d$ ein Simplex und wie man leicht nachrechnet, ergeben alle
+derartigen Simplizes zusammen gerade den Rand des entsprechenden Kreuzpolytops. 
+Die Menge aller solchen Simplizes zusammen mit allen Seiten ergibt also einen
+simplizialen Komplex, womit wir analog zum letzten Beispiel eine Triangulierung
+der Sphäre erhalten. Aufgrund der offensichtlichen Symmetrieeigenschaften der
+Kreuzpolytope erhalten wir somit nützliche symmetrische Triangulierungen. 
 
 Wir betrachten noch ein weiteres Beispiel:
 
