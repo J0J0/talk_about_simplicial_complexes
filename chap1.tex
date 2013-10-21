@@ -140,7 +140,8 @@ maximal $d+1$ Vektoren im $\R^d$ affin unabhängig sein können.
     \end{itemize}
     Wir definieren die \emph{Dimension von $\Delta$} als die maximale Dimension
     seiner Simplizies:
-    \[ \dim(\Delta) \defeq \max\{ \dim(\sigma) \Mid \sigma\in\Delta \} \;\in\N
+    \[ \dim(\Delta) \defeq \max\{ \dim(\sigma) \Mid \sigma\in\Delta \} 
+        \;\in\N \cup\{-1\}
     . \]
     Ist $\Delta$ ein simplizialer Komplex, so setzen wir
     \[ \polyeder\Delta \defeq \bigcup \Delta \;\subset\R^d \]
@@ -303,8 +304,8 @@ Matou\v sek\cite[Ch.\,1,\;1.3.6]{bookc:matousek03}.
 \begin{thDef}[Triangulierbar, Triangulierung]
     Ein topologischer Raum~$X$ heißt \emph{triangulierbar}, falls es
     einen simplizialen Komplex $\Delta$ und einen Homöomorphismus
-    $\polyeder\Delta \cong X$ gibt. Solch einen Homöomorphismus nennen wir 
-    eine \emph{Triangulierung von $X$}.
+    $f\colon\polyeder\Delta \isorightarrow X$ gibt. Das Paar $(\Delta,f)$
+    nennen wir dann eine \emph{Triangulierung von $X$}.
 \end{thDef}
 
 Die folgenden Aussagen liefern uns Triangulierungen für Sphären jeder
