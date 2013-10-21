@@ -1,4 +1,4 @@
-\documentclass[11pt,a4paper,ngerman,DIV=11,bibliography=totoc]{scrreprt}
+\documentclass[10pt,a4paper,ngerman,DIV=11]{scrartcl}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% packages
@@ -12,7 +12,6 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{mathtools}
-\usepackage[all]{xy}
 \usepackage{tikz}
 
 \usepackage[babel]{csquotes}
@@ -25,7 +24,7 @@
 
 \usepackage[pdftex,bookmarks,colorlinks=false,pdfborder={0 0 0},%
             pdftitle={Seminar Topologie vs. Kombinatorik - %
-                      Vortrag 2: Simpliziale Komplexe},%
+                      Handout zu Vortrag 2: Simpliziale Komplexe},%
             pdfauthor={Johannes Prem}]{hyperref}
 %
 \usepackage{cleveref}
@@ -38,18 +37,12 @@
 %%% macro definitions and other things
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% don't reset footnote numbers
-\makeatletter
-\@removefromreset{footnote}{chapter}
-\makeatother
-
 
 % make parenthesized versions of \ref and cleveref's \cref
 \newcommand*{\pref}[1]{(\ref{#1})}
 \newcommand*{\pcref}[1]{(\cref{#1})}
 
 % make a even more clever \mycref that produces "Lemma 42a)" etc.
-% (to see it in action check out the code in chap2.tex) 
 \newcommand{\mycref}[1]{%
     \begingroup%
     \StrCount{#1}{:}[\mycrefCount]%
@@ -66,18 +59,18 @@
 
 % style for /all/ theorem like environments
 \newtheoremstyle{mythms}
- {15pt}% space above
- {12pt}% space below 
+ {5pt}% space above
+ {5pt}% space below 
  {}% body font
  {}% indent amount
  {\bfseries}% theorem head font
  {.}% punctuation after theorem head
- {0.6cm plus 0.25cm minus 0.1cm}% space after theorem head (\newline possible)
+ {0.3cm plus 0.05cm minus 0.1cm}% space after theorem head (\newline possible)
  {}% theorem head spec 
  
 % set style and define thm like environments
 \theoremstyle{mythms}
-\newtheorem{globalnum}{DUMMY DUMMY DUMMY}[chapter]
+\newtheorem{globalnum}{DUMMY DUMMY DUMMY}[section]
 \newtheorem{thDef}[globalnum]{Definition}
 \newtheorem{thNotation}[globalnum]{Notation}
 \newtheorem{thSatz}[globalnum]{Satz}
@@ -85,8 +78,7 @@
 \newtheorem{thLemma}[globalnum]{Lemma}
 \newtheorem{thKorollar}[globalnum]{Korollar}
 
-\newtheorem{thBemerkung}[globalnum]{Bemerkung}
-%\newtheorem{thWarnung}[globalnum]{Warnung}
+\newtheorem{thAufgabe}[globalnum]{Aufgabe}
 \newtheorem{thBeispiel}[globalnum]{Beispiel}
 \newtheorem{thBeispiele}[globalnum]{Beispiele}
 \newenvironment{BspList}[1][]{%
@@ -219,34 +211,27 @@
 % use some tikz libraries
 \usetikzlibrary{arrows,calc,intersections}
 
-% xy tip selection (ComputerModern)
-\SelectTips{cm}{}
-\UseTips
-
 % listing with -- is nicer than with bullets 
-\setlist[itemize,1]{label=--}
+\setlist[itemize,1]{label=--,topsep=1pt,parsep=0pt,itemsep=0pt,leftmargin=2em}
 
-% start at chapter 0
-\setcounter{chapter}{-1}
+%
+\setkomafont{section}{\normalfont\large}
+\pagestyle{empty}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% document
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
-
-\input{titlepage}
-\input{chap0}
+%
+\input{title}
 \input{chap1}
 \input{chap2}
 \input{chap3}
-
-\nocite{bookc:matousek03}
-
-\appendix
-\bibliographystyle{plaindin}
-\bibliography{bibsources}
-
+%
+%\bibliographystyle{plaindin}
+%\bibliography{bibsources}
+%
 \end{document}
 
 
